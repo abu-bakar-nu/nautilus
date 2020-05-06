@@ -20,16 +20,19 @@
  * This is free software.  You are permitted to use,
  * redistribute, and modify it as specified in the file "LICENSE.txt".
  */
+
+
+
 #define __NAUTILUS_MAIN__
 
 #define TARGET_PORT 0xe9
 
-void outb (unsigned char val, unsigned short port)
+static void outb (unsigned char val, unsigned short port)
 {
     asm volatile ("outb %0, %1"::"a" (val), "dN" (port));
 }
 
-void print(char *b)
+static void print(char *b)
 {
     while (b && *b) {
 	outb(*b,TARGET_PORT);
@@ -37,11 +40,15 @@ void print(char *b)
     }
 }
 
+int my_monitor_entry();
+
+
 void main32 (void)
 {
     print("hello\n");
-    
+   
+
     while(1) {
-	print("still running ");
+	my_monitor_entry();
     }
 }

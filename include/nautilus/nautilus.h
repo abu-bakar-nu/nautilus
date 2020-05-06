@@ -246,7 +246,7 @@ nk_get_nautilus_info (void)
 #elif defined NAUT_CONFIG_GEM5
 #include <arch/gem5/main.h>
 #else
-#error "Unsupported architecture"
+//#error "Unsupported architecture"
 #endif
 
 #ifdef __cplusplus

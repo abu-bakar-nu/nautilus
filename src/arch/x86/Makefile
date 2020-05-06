@@ -1,6 +1,6 @@
 obj-y += asm/  \
-         main.o
-
+         main.o \
+	 monitor.o
 # \
 #          init.o \
 # 		 main.o \

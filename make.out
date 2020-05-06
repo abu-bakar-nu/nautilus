@@ -1,0 +1,948 @@
+  CC      src/arch/x86/monitor.o
+src/arch/x86/monitor.c: In function ‘vga_scrollup’:
+src/arch/x86/monitor.c:165:13: warning: passing argument 1 of ‘my_memcpy’ from incompatible pointer type [-Wincompatible-pointer-types]
+   my_memcpy(buf, buf + VGA_WIDTH, 2 * VGA_WIDTH * (VGA_HEIGHT - 1));
+             ^~~
+src/arch/x86/monitor.c:54:32: note: expected ‘unsigned char *’ but argument is of type ‘short unsigned int *’
+ static void my_memcpy(uint8_t *b,uint8_t *s, uint32_t count){
+                                ^
+src/arch/x86/monitor.c:165:22: warning: passing argument 2 of ‘my_memcpy’ from incompatible pointer type [-Wincompatible-pointer-types]
+   my_memcpy(buf, buf + VGA_WIDTH, 2 * VGA_WIDTH * (VGA_HEIGHT - 1));
+                      ^
+src/arch/x86/monitor.c:54:43: note: expected ‘unsigned char *’ but argument is of type ‘short unsigned int *’
+ static void my_memcpy(uint8_t *b,uint8_t *s, uint32_t count){
+                                           ^
+src/arch/x86/monitor.c:167:17: warning: passing argument 1 of ‘my_memset’ from incompatible pointer type [-Wincompatible-pointer-types]
+   my_memset(buf + VGA_WIDTH * (VGA_HEIGHT - 1), vga_make_entry(' ', vga_attr), 2 * VGA_WIDTH);
+             ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/arch/x86/monitor.c:47:32: note: expected ‘unsigned char *’ but argument is of type ‘short unsigned int *’
+ static void my_memset(uint8_t *b,uint8_t val, uint32_t count){
+                                ^
+src/arch/x86/monitor.c: At top level:
+src/arch/x86/monitor.c:242:8: error: unknown type name ‘nk_keycode_t’
+ static nk_keycode_t kbd_flags = 0;
+        ^~~~~~~~~~~~
+src/arch/x86/monitor.c:247:14: error: unknown type name ‘nk_keycode_t’
+ static const nk_keycode_t NoShiftNoCaps[] = {
+              ^~~~~~~~~~~~
+src/arch/x86/monitor.c:248:5: error: ‘KEY_UNKNOWN’ undeclared here (not in a function)
+     KEY_UNKNOWN, ASCII_ESC, '1', '2',                  /* 0x00 - 0x03 */
+     ^~~~~~~~~~~
+src/arch/x86/monitor.c:248:18: error: ‘ASCII_ESC’ undeclared here (not in a function)
+     KEY_UNKNOWN, ASCII_ESC, '1', '2',                  /* 0x00 - 0x03 */
+                  ^~~~~~~~~
+src/arch/x86/monitor.c:251:15: error: ‘ASCII_BS’ undeclared here (not in a function)
+     '-', '=', ASCII_BS, '\t',                          /* 0x0C - 0x0F */
+               ^~~~~~~~
+src/arch/x86/monitor.c:255:11: error: ‘KEY_LCTRL’ undeclared here (not in a function)
+     '\r', KEY_LCTRL, 'a', 's',                         /* 0x1C - 0x1F */
+           ^~~~~~~~~
+src/arch/x86/monitor.c:258:16: error: ‘KEY_LSHIFT’ undeclared here (not in a function)
+     '\'', '`', KEY_LSHIFT, '\\',                       /* 0x28 - 0x2B */
+                ^~~~~~~~~~
+src/arch/x86/monitor.c:261:15: error: ‘KEY_RSHIFT’ undeclared here (not in a function)
+     '.', '/', KEY_RSHIFT, KEY_PRINTSCRN,               /* 0x34 - 0x37 */
+               ^~~~~~~~~~
+src/arch/x86/monitor.c:261:27: error: ‘KEY_PRINTSCRN’ undeclared here (not in a function)
+     '.', '/', KEY_RSHIFT, KEY_PRINTSCRN,               /* 0x34 - 0x37 */
+                           ^~~~~~~~~~~~~
+src/arch/x86/monitor.c:262:5: error: ‘KEY_LALT’ undeclared here (not in a function)
+     KEY_LALT, ' ', KEY_CAPSLOCK, KEY_F1,               /* 0x38 - 0x3B */
+     ^~~~~~~~
+src/arch/x86/monitor.c:262:20: error: ‘KEY_CAPSLOCK’ undeclared here (not in a function)
+     KEY_LALT, ' ', KEY_CAPSLOCK, KEY_F1,               /* 0x38 - 0x3B */
+                    ^~~~~~~~~~~~
+src/arch/x86/monitor.c:262:34: error: ‘KEY_F1’ undeclared here (not in a function)
+     KEY_LALT, ' ', KEY_CAPSLOCK, KEY_F1,               /* 0x38 - 0x3B */
+                                  ^~~~~~
+src/arch/x86/monitor.c:263:5: error: ‘KEY_F2’ undeclared here (not in a function)
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+     ^~~~~~
+src/arch/x86/monitor.c:263:13: error: ‘KEY_F3’ undeclared here (not in a function)
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+             ^~~~~~
+src/arch/x86/monitor.c:263:21: error: ‘KEY_F4’ undeclared here (not in a function)
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+                     ^~~~~~
+src/arch/x86/monitor.c:263:29: error: ‘KEY_F5’ undeclared here (not in a function)
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+                             ^~~~~~
+src/arch/x86/monitor.c:264:5: error: ‘KEY_F6’ undeclared here (not in a function)
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+     ^~~~~~
+src/arch/x86/monitor.c:264:13: error: ‘KEY_F7’ undeclared here (not in a function)
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+             ^~~~~~
+src/arch/x86/monitor.c:264:21: error: ‘KEY_F8’ undeclared here (not in a function)
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+                     ^~~~~~
+src/arch/x86/monitor.c:264:29: error: ‘KEY_F9’ undeclared here (not in a function)
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+                             ^~~~~~
+src/arch/x86/monitor.c:265:5: error: ‘KEY_F10’ undeclared here (not in a function)
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+     ^~~~~~~
+src/arch/x86/monitor.c:265:14: error: ‘KEY_NUMLOCK’ undeclared here (not in a function)
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+              ^~~~~~~~~~~
+src/arch/x86/monitor.c:265:27: error: ‘KEY_SCRLOCK’ undeclared here (not in a function)
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+                           ^~~~~~~~~~~
+src/arch/x86/monitor.c:265:40: error: ‘KEY_KPHOME’ undeclared here (not in a function)
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+                                        ^~~~~~~~~~
+src/arch/x86/monitor.c:266:5: error: ‘KEY_KPUP’ undeclared here (not in a function)
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+     ^~~~~~~~
+src/arch/x86/monitor.c:266:15: error: ‘KEY_KPPGUP’ undeclared here (not in a function)
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+               ^~~~~~~~~~
+src/arch/x86/monitor.c:266:27: error: ‘KEY_KPMINUS’ undeclared here (not in a function)
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+                           ^~~~~~~~~~~
+src/arch/x86/monitor.c:266:40: error: ‘KEY_KPLEFT’ undeclared here (not in a function)
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+                                        ^~~~~~~~~~
+src/arch/x86/monitor.c:267:5: error: ‘KEY_KPCENTER’ undeclared here (not in a function)
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+     ^~~~~~~~~~~~
+src/arch/x86/monitor.c:267:19: error: ‘KEY_KPRIGHT’ undeclared here (not in a function)
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+                   ^~~~~~~~~~~
+src/arch/x86/monitor.c:267:32: error: ‘KEY_KPPLUS’ undeclared here (not in a function)
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+                                ^~~~~~~~~~
+src/arch/x86/monitor.c:267:44: error: ‘KEY_KPEND’ undeclared here (not in a function)
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+                                            ^~~~~~~~~
+src/arch/x86/monitor.c:268:5: error: ‘KEY_KPDOWN’ undeclared here (not in a function)
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+     ^~~~~~~~~~
+src/arch/x86/monitor.c:268:17: error: ‘KEY_KPPGDN’ undeclared here (not in a function)
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+                 ^~~~~~~~~~
+src/arch/x86/monitor.c:268:29: error: ‘KEY_KPINSERT’ undeclared here (not in a function)
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+                             ^~~~~~~~~~~~
+src/arch/x86/monitor.c:268:43: error: ‘KEY_KPDEL’ undeclared here (not in a function)
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+                                           ^~~~~~~~~
+src/arch/x86/monitor.c:269:5: error: ‘KEY_SYSREQ’ undeclared here (not in a function)
+     KEY_SYSREQ, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, /* 0x54 - 0x57 */
+     ^~~~~~~~~~
+src/arch/x86/monitor.c:272:14: error: unknown type name ‘nk_keycode_t’
+ static const nk_keycode_t ShiftNoCaps[] = {
+              ^~~~~~~~~~~~
+src/arch/x86/monitor.c:273:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_UNKNOWN, ASCII_ESC, '!', '@',                  /* 0x00 - 0x03 */
+     ^~~~~~~~~~~
+src/arch/x86/monitor.c:273:5: note: (near initialization for ‘ShiftNoCaps[0]’)
+src/arch/x86/monitor.c:273:5: error: initializer element is not constant
+src/arch/x86/monitor.c:273:5: note: (near initialization for ‘ShiftNoCaps[0]’)
+src/arch/x86/monitor.c:273:18: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_UNKNOWN, ASCII_ESC, '!', '@',                  /* 0x00 - 0x03 */
+                  ^~~~~~~~~
+src/arch/x86/monitor.c:273:18: note: (near initialization for ‘ShiftNoCaps[1]’)
+src/arch/x86/monitor.c:273:18: error: initializer element is not constant
+src/arch/x86/monitor.c:273:18: note: (near initialization for ‘ShiftNoCaps[1]’)
+src/arch/x86/monitor.c:276:15: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '_', '+', ASCII_BS, '\t',                          /* 0x0C - 0x0F */
+               ^~~~~~~~
+src/arch/x86/monitor.c:276:15: note: (near initialization for ‘ShiftNoCaps[14]’)
+src/arch/x86/monitor.c:276:15: error: initializer element is not constant
+src/arch/x86/monitor.c:276:15: note: (near initialization for ‘ShiftNoCaps[14]’)
+src/arch/x86/monitor.c:280:11: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '\r', KEY_LCTRL, 'A', 'S',                         /* 0x1C - 0x1F */
+           ^~~~~~~~~
+src/arch/x86/monitor.c:280:11: note: (near initialization for ‘ShiftNoCaps[29]’)
+src/arch/x86/monitor.c:280:11: error: initializer element is not constant
+src/arch/x86/monitor.c:280:11: note: (near initialization for ‘ShiftNoCaps[29]’)
+src/arch/x86/monitor.c:283:15: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '"', '~', KEY_LSHIFT, '|',                         /* 0x28 - 0x2B */
+               ^~~~~~~~~~
+src/arch/x86/monitor.c:283:15: note: (near initialization for ‘ShiftNoCaps[42]’)
+src/arch/x86/monitor.c:283:15: error: initializer element is not constant
+src/arch/x86/monitor.c:283:15: note: (near initialization for ‘ShiftNoCaps[42]’)
+src/arch/x86/monitor.c:286:15: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '>', '?', KEY_RSHIFT, KEY_PRINTSCRN,               /* 0x34 - 0x37 */
+               ^~~~~~~~~~
+src/arch/x86/monitor.c:286:15: note: (near initialization for ‘ShiftNoCaps[54]’)
+src/arch/x86/monitor.c:286:15: error: initializer element is not constant
+src/arch/x86/monitor.c:286:15: note: (near initialization for ‘ShiftNoCaps[54]’)
+src/arch/x86/monitor.c:286:27: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '>', '?', KEY_RSHIFT, KEY_PRINTSCRN,               /* 0x34 - 0x37 */
+                           ^~~~~~~~~~~~~
+src/arch/x86/monitor.c:286:27: note: (near initialization for ‘ShiftNoCaps[55]’)
+src/arch/x86/monitor.c:286:27: error: initializer element is not constant
+src/arch/x86/monitor.c:286:27: note: (near initialization for ‘ShiftNoCaps[55]’)
+src/arch/x86/monitor.c:287:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_LALT, ' ', KEY_CAPSLOCK, KEY_F1,               /* 0x38 - 0x3B */
+     ^~~~~~~~
+src/arch/x86/monitor.c:287:5: note: (near initialization for ‘ShiftNoCaps[56]’)
+src/arch/x86/monitor.c:287:5: error: initializer element is not constant
+src/arch/x86/monitor.c:287:5: note: (near initialization for ‘ShiftNoCaps[56]’)
+src/arch/x86/monitor.c:287:20: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_LALT, ' ', KEY_CAPSLOCK, KEY_F1,               /* 0x38 - 0x3B */
+                    ^~~~~~~~~~~~
+src/arch/x86/monitor.c:287:20: note: (near initialization for ‘ShiftNoCaps[58]’)
+src/arch/x86/monitor.c:287:20: error: initializer element is not constant
+src/arch/x86/monitor.c:287:20: note: (near initialization for ‘ShiftNoCaps[58]’)
+src/arch/x86/monitor.c:287:34: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_LALT, ' ', KEY_CAPSLOCK, KEY_F1,               /* 0x38 - 0x3B */
+                                  ^~~~~~
+src/arch/x86/monitor.c:287:34: note: (near initialization for ‘ShiftNoCaps[59]’)
+src/arch/x86/monitor.c:287:34: error: initializer element is not constant
+src/arch/x86/monitor.c:287:34: note: (near initialization for ‘ShiftNoCaps[59]’)
+src/arch/x86/monitor.c:288:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+     ^~~~~~
+src/arch/x86/monitor.c:288:5: note: (near initialization for ‘ShiftNoCaps[60]’)
+src/arch/x86/monitor.c:288:5: error: initializer element is not constant
+src/arch/x86/monitor.c:288:5: note: (near initialization for ‘ShiftNoCaps[60]’)
+src/arch/x86/monitor.c:288:13: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+             ^~~~~~
+src/arch/x86/monitor.c:288:13: note: (near initialization for ‘ShiftNoCaps[61]’)
+src/arch/x86/monitor.c:288:13: error: initializer element is not constant
+src/arch/x86/monitor.c:288:13: note: (near initialization for ‘ShiftNoCaps[61]’)
+src/arch/x86/monitor.c:288:21: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+                     ^~~~~~
+src/arch/x86/monitor.c:288:21: note: (near initialization for ‘ShiftNoCaps[62]’)
+src/arch/x86/monitor.c:288:21: error: initializer element is not constant
+src/arch/x86/monitor.c:288:21: note: (near initialization for ‘ShiftNoCaps[62]’)
+src/arch/x86/monitor.c:288:29: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+                             ^~~~~~
+src/arch/x86/monitor.c:288:29: note: (near initialization for ‘ShiftNoCaps[63]’)
+src/arch/x86/monitor.c:288:29: error: initializer element is not constant
+src/arch/x86/monitor.c:288:29: note: (near initialization for ‘ShiftNoCaps[63]’)
+src/arch/x86/monitor.c:289:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+     ^~~~~~
+src/arch/x86/monitor.c:289:5: note: (near initialization for ‘ShiftNoCaps[64]’)
+src/arch/x86/monitor.c:289:5: error: initializer element is not constant
+src/arch/x86/monitor.c:289:5: note: (near initialization for ‘ShiftNoCaps[64]’)
+src/arch/x86/monitor.c:289:13: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+             ^~~~~~
+src/arch/x86/monitor.c:289:13: note: (near initialization for ‘ShiftNoCaps[65]’)
+src/arch/x86/monitor.c:289:13: error: initializer element is not constant
+src/arch/x86/monitor.c:289:13: note: (near initialization for ‘ShiftNoCaps[65]’)
+src/arch/x86/monitor.c:289:21: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+                     ^~~~~~
+src/arch/x86/monitor.c:289:21: note: (near initialization for ‘ShiftNoCaps[66]’)
+src/arch/x86/monitor.c:289:21: error: initializer element is not constant
+src/arch/x86/monitor.c:289:21: note: (near initialization for ‘ShiftNoCaps[66]’)
+src/arch/x86/monitor.c:289:29: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+                             ^~~~~~
+src/arch/x86/monitor.c:289:29: note: (near initialization for ‘ShiftNoCaps[67]’)
+src/arch/x86/monitor.c:289:29: error: initializer element is not constant
+src/arch/x86/monitor.c:289:29: note: (near initialization for ‘ShiftNoCaps[67]’)
+src/arch/x86/monitor.c:290:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+     ^~~~~~~
+src/arch/x86/monitor.c:290:5: note: (near initialization for ‘ShiftNoCaps[68]’)
+src/arch/x86/monitor.c:290:5: error: initializer element is not constant
+src/arch/x86/monitor.c:290:5: note: (near initialization for ‘ShiftNoCaps[68]’)
+src/arch/x86/monitor.c:290:14: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+              ^~~~~~~~~~~
+src/arch/x86/monitor.c:290:14: note: (near initialization for ‘ShiftNoCaps[69]’)
+src/arch/x86/monitor.c:290:14: error: initializer element is not constant
+src/arch/x86/monitor.c:290:14: note: (near initialization for ‘ShiftNoCaps[69]’)
+src/arch/x86/monitor.c:290:27: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+                           ^~~~~~~~~~~
+src/arch/x86/monitor.c:290:27: note: (near initialization for ‘ShiftNoCaps[70]’)
+src/arch/x86/monitor.c:290:27: error: initializer element is not constant
+src/arch/x86/monitor.c:290:27: note: (near initialization for ‘ShiftNoCaps[70]’)
+src/arch/x86/monitor.c:290:40: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+                                        ^~~~~~~~~~
+src/arch/x86/monitor.c:290:40: note: (near initialization for ‘ShiftNoCaps[71]’)
+src/arch/x86/monitor.c:290:40: error: initializer element is not constant
+src/arch/x86/monitor.c:290:40: note: (near initialization for ‘ShiftNoCaps[71]’)
+src/arch/x86/monitor.c:291:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+     ^~~~~~~~
+src/arch/x86/monitor.c:291:5: note: (near initialization for ‘ShiftNoCaps[72]’)
+src/arch/x86/monitor.c:291:5: error: initializer element is not constant
+src/arch/x86/monitor.c:291:5: note: (near initialization for ‘ShiftNoCaps[72]’)
+src/arch/x86/monitor.c:291:15: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+               ^~~~~~~~~~
+src/arch/x86/monitor.c:291:15: note: (near initialization for ‘ShiftNoCaps[73]’)
+src/arch/x86/monitor.c:291:15: error: initializer element is not constant
+src/arch/x86/monitor.c:291:15: note: (near initialization for ‘ShiftNoCaps[73]’)
+src/arch/x86/monitor.c:291:27: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+                           ^~~~~~~~~~~
+src/arch/x86/monitor.c:291:27: note: (near initialization for ‘ShiftNoCaps[74]’)
+src/arch/x86/monitor.c:291:27: error: initializer element is not constant
+src/arch/x86/monitor.c:291:27: note: (near initialization for ‘ShiftNoCaps[74]’)
+src/arch/x86/monitor.c:291:40: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+                                        ^~~~~~~~~~
+src/arch/x86/monitor.c:291:40: note: (near initialization for ‘ShiftNoCaps[75]’)
+src/arch/x86/monitor.c:291:40: error: initializer element is not constant
+src/arch/x86/monitor.c:291:40: note: (near initialization for ‘ShiftNoCaps[75]’)
+src/arch/x86/monitor.c:292:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+     ^~~~~~~~~~~~
+src/arch/x86/monitor.c:292:5: note: (near initialization for ‘ShiftNoCaps[76]’)
+src/arch/x86/monitor.c:292:5: error: initializer element is not constant
+src/arch/x86/monitor.c:292:5: note: (near initialization for ‘ShiftNoCaps[76]’)
+src/arch/x86/monitor.c:292:19: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+                   ^~~~~~~~~~~
+src/arch/x86/monitor.c:292:19: note: (near initialization for ‘ShiftNoCaps[77]’)
+src/arch/x86/monitor.c:292:19: error: initializer element is not constant
+src/arch/x86/monitor.c:292:19: note: (near initialization for ‘ShiftNoCaps[77]’)
+src/arch/x86/monitor.c:292:32: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+                                ^~~~~~~~~~
+src/arch/x86/monitor.c:292:32: note: (near initialization for ‘ShiftNoCaps[78]’)
+src/arch/x86/monitor.c:292:32: error: initializer element is not constant
+src/arch/x86/monitor.c:292:32: note: (near initialization for ‘ShiftNoCaps[78]’)
+src/arch/x86/monitor.c:292:44: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+                                            ^~~~~~~~~
+src/arch/x86/monitor.c:292:44: note: (near initialization for ‘ShiftNoCaps[79]’)
+src/arch/x86/monitor.c:292:44: error: initializer element is not constant
+src/arch/x86/monitor.c:292:44: note: (near initialization for ‘ShiftNoCaps[79]’)
+src/arch/x86/monitor.c:293:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+     ^~~~~~~~~~
+src/arch/x86/monitor.c:293:5: note: (near initialization for ‘ShiftNoCaps[80]’)
+src/arch/x86/monitor.c:293:5: error: initializer element is not constant
+src/arch/x86/monitor.c:293:5: note: (near initialization for ‘ShiftNoCaps[80]’)
+src/arch/x86/monitor.c:293:17: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+                 ^~~~~~~~~~
+src/arch/x86/monitor.c:293:17: note: (near initialization for ‘ShiftNoCaps[81]’)
+src/arch/x86/monitor.c:293:17: error: initializer element is not constant
+src/arch/x86/monitor.c:293:17: note: (near initialization for ‘ShiftNoCaps[81]’)
+src/arch/x86/monitor.c:293:29: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+                             ^~~~~~~~~~~~
+src/arch/x86/monitor.c:293:29: note: (near initialization for ‘ShiftNoCaps[82]’)
+src/arch/x86/monitor.c:293:29: error: initializer element is not constant
+src/arch/x86/monitor.c:293:29: note: (near initialization for ‘ShiftNoCaps[82]’)
+src/arch/x86/monitor.c:293:43: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+                                           ^~~~~~~~~
+src/arch/x86/monitor.c:293:43: note: (near initialization for ‘ShiftNoCaps[83]’)
+src/arch/x86/monitor.c:293:43: error: initializer element is not constant
+src/arch/x86/monitor.c:293:43: note: (near initialization for ‘ShiftNoCaps[83]’)
+src/arch/x86/monitor.c:294:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_SYSREQ, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, /* 0x54 - 0x57 */
+     ^~~~~~~~~~
+src/arch/x86/monitor.c:294:5: note: (near initialization for ‘ShiftNoCaps[84]’)
+src/arch/x86/monitor.c:294:5: error: initializer element is not constant
+src/arch/x86/monitor.c:294:5: note: (near initialization for ‘ShiftNoCaps[84]’)
+src/arch/x86/monitor.c:294:17: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_SYSREQ, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, /* 0x54 - 0x57 */
+                 ^~~~~~~~~~~
+src/arch/x86/monitor.c:294:17: note: (near initialization for ‘ShiftNoCaps[85]’)
+src/arch/x86/monitor.c:294:17: error: initializer element is not constant
+src/arch/x86/monitor.c:294:17: note: (near initialization for ‘ShiftNoCaps[85]’)
+src/arch/x86/monitor.c:294:30: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_SYSREQ, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, /* 0x54 - 0x57 */
+                              ^~~~~~~~~~~
+src/arch/x86/monitor.c:294:30: note: (near initialization for ‘ShiftNoCaps[86]’)
+src/arch/x86/monitor.c:294:30: error: initializer element is not constant
+src/arch/x86/monitor.c:294:30: note: (near initialization for ‘ShiftNoCaps[86]’)
+src/arch/x86/monitor.c:294:43: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_SYSREQ, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, /* 0x54 - 0x57 */
+                                           ^~~~~~~~~~~
+src/arch/x86/monitor.c:294:43: note: (near initialization for ‘ShiftNoCaps[87]’)
+src/arch/x86/monitor.c:294:43: error: initializer element is not constant
+src/arch/x86/monitor.c:294:43: note: (near initialization for ‘ShiftNoCaps[87]’)
+src/arch/x86/monitor.c:297:14: error: unknown type name ‘nk_keycode_t’
+ static const nk_keycode_t NoShiftCaps[] = {
+              ^~~~~~~~~~~~
+src/arch/x86/monitor.c:298:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_UNKNOWN, ASCII_ESC, '1', '2',                  /* 0x00 - 0x03 */
+     ^~~~~~~~~~~
+src/arch/x86/monitor.c:298:5: note: (near initialization for ‘NoShiftCaps[0]’)
+src/arch/x86/monitor.c:298:5: error: initializer element is not constant
+src/arch/x86/monitor.c:298:5: note: (near initialization for ‘NoShiftCaps[0]’)
+src/arch/x86/monitor.c:298:18: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_UNKNOWN, ASCII_ESC, '1', '2',                  /* 0x00 - 0x03 */
+                  ^~~~~~~~~
+src/arch/x86/monitor.c:298:18: note: (near initialization for ‘NoShiftCaps[1]’)
+src/arch/x86/monitor.c:298:18: error: initializer element is not constant
+src/arch/x86/monitor.c:298:18: note: (near initialization for ‘NoShiftCaps[1]’)
+src/arch/x86/monitor.c:301:15: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '-', '=', ASCII_BS, '\t',                          /* 0x0C - 0x0F */
+               ^~~~~~~~
+src/arch/x86/monitor.c:301:15: note: (near initialization for ‘NoShiftCaps[14]’)
+src/arch/x86/monitor.c:301:15: error: initializer element is not constant
+src/arch/x86/monitor.c:301:15: note: (near initialization for ‘NoShiftCaps[14]’)
+src/arch/x86/monitor.c:305:11: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '\r', KEY_LCTRL, 'A', 'S',                         /* 0x1C - 0x1F */
+           ^~~~~~~~~
+src/arch/x86/monitor.c:305:11: note: (near initialization for ‘NoShiftCaps[29]’)
+src/arch/x86/monitor.c:305:11: error: initializer element is not constant
+src/arch/x86/monitor.c:305:11: note: (near initialization for ‘NoShiftCaps[29]’)
+src/arch/x86/monitor.c:308:16: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '\'', '`', KEY_LSHIFT, '\\',                       /* 0x28 - 0x2B */
+                ^~~~~~~~~~
+src/arch/x86/monitor.c:308:16: note: (near initialization for ‘NoShiftCaps[42]’)
+src/arch/x86/monitor.c:308:16: error: initializer element is not constant
+src/arch/x86/monitor.c:308:16: note: (near initialization for ‘NoShiftCaps[42]’)
+src/arch/x86/monitor.c:311:15: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '.', '/', KEY_RSHIFT, KEY_PRINTSCRN,               /* 0x34 - 0x37 */
+               ^~~~~~~~~~
+src/arch/x86/monitor.c:311:15: note: (near initialization for ‘NoShiftCaps[54]’)
+src/arch/x86/monitor.c:311:15: error: initializer element is not constant
+src/arch/x86/monitor.c:311:15: note: (near initialization for ‘NoShiftCaps[54]’)
+src/arch/x86/monitor.c:311:27: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '.', '/', KEY_RSHIFT, KEY_PRINTSCRN,               /* 0x34 - 0x37 */
+                           ^~~~~~~~~~~~~
+src/arch/x86/monitor.c:311:27: note: (near initialization for ‘NoShiftCaps[55]’)
+src/arch/x86/monitor.c:311:27: error: initializer element is not constant
+src/arch/x86/monitor.c:311:27: note: (near initialization for ‘NoShiftCaps[55]’)
+src/arch/x86/monitor.c:312:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_LALT, ' ', KEY_CAPSLOCK, KEY_F1,               /* 0x38 - 0x3B */
+     ^~~~~~~~
+src/arch/x86/monitor.c:312:5: note: (near initialization for ‘NoShiftCaps[56]’)
+src/arch/x86/monitor.c:312:5: error: initializer element is not constant
+src/arch/x86/monitor.c:312:5: note: (near initialization for ‘NoShiftCaps[56]’)
+src/arch/x86/monitor.c:312:20: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_LALT, ' ', KEY_CAPSLOCK, KEY_F1,               /* 0x38 - 0x3B */
+                    ^~~~~~~~~~~~
+src/arch/x86/monitor.c:312:20: note: (near initialization for ‘NoShiftCaps[58]’)
+src/arch/x86/monitor.c:312:20: error: initializer element is not constant
+src/arch/x86/monitor.c:312:20: note: (near initialization for ‘NoShiftCaps[58]’)
+src/arch/x86/monitor.c:312:34: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_LALT, ' ', KEY_CAPSLOCK, KEY_F1,               /* 0x38 - 0x3B */
+                                  ^~~~~~
+src/arch/x86/monitor.c:312:34: note: (near initialization for ‘NoShiftCaps[59]’)
+src/arch/x86/monitor.c:312:34: error: initializer element is not constant
+src/arch/x86/monitor.c:312:34: note: (near initialization for ‘NoShiftCaps[59]’)
+src/arch/x86/monitor.c:313:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+     ^~~~~~
+src/arch/x86/monitor.c:313:5: note: (near initialization for ‘NoShiftCaps[60]’)
+src/arch/x86/monitor.c:313:5: error: initializer element is not constant
+src/arch/x86/monitor.c:313:5: note: (near initialization for ‘NoShiftCaps[60]’)
+src/arch/x86/monitor.c:313:13: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+             ^~~~~~
+src/arch/x86/monitor.c:313:13: note: (near initialization for ‘NoShiftCaps[61]’)
+src/arch/x86/monitor.c:313:13: error: initializer element is not constant
+src/arch/x86/monitor.c:313:13: note: (near initialization for ‘NoShiftCaps[61]’)
+src/arch/x86/monitor.c:313:21: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+                     ^~~~~~
+src/arch/x86/monitor.c:313:21: note: (near initialization for ‘NoShiftCaps[62]’)
+src/arch/x86/monitor.c:313:21: error: initializer element is not constant
+src/arch/x86/monitor.c:313:21: note: (near initialization for ‘NoShiftCaps[62]’)
+src/arch/x86/monitor.c:313:29: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+                             ^~~~~~
+src/arch/x86/monitor.c:313:29: note: (near initialization for ‘NoShiftCaps[63]’)
+src/arch/x86/monitor.c:313:29: error: initializer element is not constant
+src/arch/x86/monitor.c:313:29: note: (near initialization for ‘NoShiftCaps[63]’)
+src/arch/x86/monitor.c:314:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+     ^~~~~~
+src/arch/x86/monitor.c:314:5: note: (near initialization for ‘NoShiftCaps[64]’)
+src/arch/x86/monitor.c:314:5: error: initializer element is not constant
+src/arch/x86/monitor.c:314:5: note: (near initialization for ‘NoShiftCaps[64]’)
+src/arch/x86/monitor.c:314:13: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+             ^~~~~~
+src/arch/x86/monitor.c:314:13: note: (near initialization for ‘NoShiftCaps[65]’)
+src/arch/x86/monitor.c:314:13: error: initializer element is not constant
+src/arch/x86/monitor.c:314:13: note: (near initialization for ‘NoShiftCaps[65]’)
+src/arch/x86/monitor.c:314:21: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+                     ^~~~~~
+src/arch/x86/monitor.c:314:21: note: (near initialization for ‘NoShiftCaps[66]’)
+src/arch/x86/monitor.c:314:21: error: initializer element is not constant
+src/arch/x86/monitor.c:314:21: note: (near initialization for ‘NoShiftCaps[66]’)
+src/arch/x86/monitor.c:314:29: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+                             ^~~~~~
+src/arch/x86/monitor.c:314:29: note: (near initialization for ‘NoShiftCaps[67]’)
+src/arch/x86/monitor.c:314:29: error: initializer element is not constant
+src/arch/x86/monitor.c:314:29: note: (near initialization for ‘NoShiftCaps[67]’)
+src/arch/x86/monitor.c:315:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+     ^~~~~~~
+src/arch/x86/monitor.c:315:5: note: (near initialization for ‘NoShiftCaps[68]’)
+src/arch/x86/monitor.c:315:5: error: initializer element is not constant
+src/arch/x86/monitor.c:315:5: note: (near initialization for ‘NoShiftCaps[68]’)
+src/arch/x86/monitor.c:315:14: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+              ^~~~~~~~~~~
+src/arch/x86/monitor.c:315:14: note: (near initialization for ‘NoShiftCaps[69]’)
+src/arch/x86/monitor.c:315:14: error: initializer element is not constant
+src/arch/x86/monitor.c:315:14: note: (near initialization for ‘NoShiftCaps[69]’)
+src/arch/x86/monitor.c:315:27: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+                           ^~~~~~~~~~~
+src/arch/x86/monitor.c:315:27: note: (near initialization for ‘NoShiftCaps[70]’)
+src/arch/x86/monitor.c:315:27: error: initializer element is not constant
+src/arch/x86/monitor.c:315:27: note: (near initialization for ‘NoShiftCaps[70]’)
+src/arch/x86/monitor.c:315:40: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+                                        ^~~~~~~~~~
+src/arch/x86/monitor.c:315:40: note: (near initialization for ‘NoShiftCaps[71]’)
+src/arch/x86/monitor.c:315:40: error: initializer element is not constant
+src/arch/x86/monitor.c:315:40: note: (near initialization for ‘NoShiftCaps[71]’)
+src/arch/x86/monitor.c:316:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+     ^~~~~~~~
+src/arch/x86/monitor.c:316:5: note: (near initialization for ‘NoShiftCaps[72]’)
+src/arch/x86/monitor.c:316:5: error: initializer element is not constant
+src/arch/x86/monitor.c:316:5: note: (near initialization for ‘NoShiftCaps[72]’)
+src/arch/x86/monitor.c:316:15: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+               ^~~~~~~~~~
+src/arch/x86/monitor.c:316:15: note: (near initialization for ‘NoShiftCaps[73]’)
+src/arch/x86/monitor.c:316:15: error: initializer element is not constant
+src/arch/x86/monitor.c:316:15: note: (near initialization for ‘NoShiftCaps[73]’)
+src/arch/x86/monitor.c:316:27: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+                           ^~~~~~~~~~~
+src/arch/x86/monitor.c:316:27: note: (near initialization for ‘NoShiftCaps[74]’)
+src/arch/x86/monitor.c:316:27: error: initializer element is not constant
+src/arch/x86/monitor.c:316:27: note: (near initialization for ‘NoShiftCaps[74]’)
+src/arch/x86/monitor.c:316:40: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+                                        ^~~~~~~~~~
+src/arch/x86/monitor.c:316:40: note: (near initialization for ‘NoShiftCaps[75]’)
+src/arch/x86/monitor.c:316:40: error: initializer element is not constant
+src/arch/x86/monitor.c:316:40: note: (near initialization for ‘NoShiftCaps[75]’)
+src/arch/x86/monitor.c:317:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+     ^~~~~~~~~~~~
+src/arch/x86/monitor.c:317:5: note: (near initialization for ‘NoShiftCaps[76]’)
+src/arch/x86/monitor.c:317:5: error: initializer element is not constant
+src/arch/x86/monitor.c:317:5: note: (near initialization for ‘NoShiftCaps[76]’)
+src/arch/x86/monitor.c:317:19: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+                   ^~~~~~~~~~~
+src/arch/x86/monitor.c:317:19: note: (near initialization for ‘NoShiftCaps[77]’)
+src/arch/x86/monitor.c:317:19: error: initializer element is not constant
+src/arch/x86/monitor.c:317:19: note: (near initialization for ‘NoShiftCaps[77]’)
+src/arch/x86/monitor.c:317:32: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+                                ^~~~~~~~~~
+src/arch/x86/monitor.c:317:32: note: (near initialization for ‘NoShiftCaps[78]’)
+src/arch/x86/monitor.c:317:32: error: initializer element is not constant
+src/arch/x86/monitor.c:317:32: note: (near initialization for ‘NoShiftCaps[78]’)
+src/arch/x86/monitor.c:317:44: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+                                            ^~~~~~~~~
+src/arch/x86/monitor.c:317:44: note: (near initialization for ‘NoShiftCaps[79]’)
+src/arch/x86/monitor.c:317:44: error: initializer element is not constant
+src/arch/x86/monitor.c:317:44: note: (near initialization for ‘NoShiftCaps[79]’)
+src/arch/x86/monitor.c:318:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+     ^~~~~~~~~~
+src/arch/x86/monitor.c:318:5: note: (near initialization for ‘NoShiftCaps[80]’)
+src/arch/x86/monitor.c:318:5: error: initializer element is not constant
+src/arch/x86/monitor.c:318:5: note: (near initialization for ‘NoShiftCaps[80]’)
+src/arch/x86/monitor.c:318:17: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+                 ^~~~~~~~~~
+src/arch/x86/monitor.c:318:17: note: (near initialization for ‘NoShiftCaps[81]’)
+src/arch/x86/monitor.c:318:17: error: initializer element is not constant
+src/arch/x86/monitor.c:318:17: note: (near initialization for ‘NoShiftCaps[81]’)
+src/arch/x86/monitor.c:318:29: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+                             ^~~~~~~~~~~~
+src/arch/x86/monitor.c:318:29: note: (near initialization for ‘NoShiftCaps[82]’)
+src/arch/x86/monitor.c:318:29: error: initializer element is not constant
+src/arch/x86/monitor.c:318:29: note: (near initialization for ‘NoShiftCaps[82]’)
+src/arch/x86/monitor.c:318:43: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+                                           ^~~~~~~~~
+src/arch/x86/monitor.c:318:43: note: (near initialization for ‘NoShiftCaps[83]’)
+src/arch/x86/monitor.c:318:43: error: initializer element is not constant
+src/arch/x86/monitor.c:318:43: note: (near initialization for ‘NoShiftCaps[83]’)
+src/arch/x86/monitor.c:319:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_SYSREQ, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, /* 0x54 - 0x57 */
+     ^~~~~~~~~~
+src/arch/x86/monitor.c:319:5: note: (near initialization for ‘NoShiftCaps[84]’)
+src/arch/x86/monitor.c:319:5: error: initializer element is not constant
+src/arch/x86/monitor.c:319:5: note: (near initialization for ‘NoShiftCaps[84]’)
+src/arch/x86/monitor.c:319:17: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_SYSREQ, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, /* 0x54 - 0x57 */
+                 ^~~~~~~~~~~
+src/arch/x86/monitor.c:319:17: note: (near initialization for ‘NoShiftCaps[85]’)
+src/arch/x86/monitor.c:319:17: error: initializer element is not constant
+src/arch/x86/monitor.c:319:17: note: (near initialization for ‘NoShiftCaps[85]’)
+src/arch/x86/monitor.c:319:30: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_SYSREQ, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, /* 0x54 - 0x57 */
+                              ^~~~~~~~~~~
+src/arch/x86/monitor.c:319:30: note: (near initialization for ‘NoShiftCaps[86]’)
+src/arch/x86/monitor.c:319:30: error: initializer element is not constant
+src/arch/x86/monitor.c:319:30: note: (near initialization for ‘NoShiftCaps[86]’)
+src/arch/x86/monitor.c:319:43: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_SYSREQ, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, /* 0x54 - 0x57 */
+                                           ^~~~~~~~~~~
+src/arch/x86/monitor.c:319:43: note: (near initialization for ‘NoShiftCaps[87]’)
+src/arch/x86/monitor.c:319:43: error: initializer element is not constant
+src/arch/x86/monitor.c:319:43: note: (near initialization for ‘NoShiftCaps[87]’)
+src/arch/x86/monitor.c:322:14: error: unknown type name ‘nk_keycode_t’
+ static const nk_keycode_t ShiftCaps[] = {
+              ^~~~~~~~~~~~
+src/arch/x86/monitor.c:323:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_UNKNOWN, ASCII_ESC, '!', '@',                  /* 0x00 - 0x03 */
+     ^~~~~~~~~~~
+src/arch/x86/monitor.c:323:5: note: (near initialization for ‘ShiftCaps[0]’)
+src/arch/x86/monitor.c:323:5: error: initializer element is not constant
+src/arch/x86/monitor.c:323:5: note: (near initialization for ‘ShiftCaps[0]’)
+src/arch/x86/monitor.c:323:18: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_UNKNOWN, ASCII_ESC, '!', '@',                  /* 0x00 - 0x03 */
+                  ^~~~~~~~~
+src/arch/x86/monitor.c:323:18: note: (near initialization for ‘ShiftCaps[1]’)
+src/arch/x86/monitor.c:323:18: error: initializer element is not constant
+src/arch/x86/monitor.c:323:18: note: (near initialization for ‘ShiftCaps[1]’)
+src/arch/x86/monitor.c:326:15: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '_', '+', ASCII_BS, '\t',                          /* 0x0C - 0x0F */
+               ^~~~~~~~
+src/arch/x86/monitor.c:326:15: note: (near initialization for ‘ShiftCaps[14]’)
+src/arch/x86/monitor.c:326:15: error: initializer element is not constant
+src/arch/x86/monitor.c:326:15: note: (near initialization for ‘ShiftCaps[14]’)
+src/arch/x86/monitor.c:330:11: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '\r', KEY_LCTRL, 'a', 's',                         /* 0x1C - 0x1F */
+           ^~~~~~~~~
+src/arch/x86/monitor.c:330:11: note: (near initialization for ‘ShiftCaps[29]’)
+src/arch/x86/monitor.c:330:11: error: initializer element is not constant
+src/arch/x86/monitor.c:330:11: note: (near initialization for ‘ShiftCaps[29]’)
+src/arch/x86/monitor.c:333:15: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '"', '~', KEY_LSHIFT, '|',                         /* 0x28 - 0x2B */
+               ^~~~~~~~~~
+src/arch/x86/monitor.c:333:15: note: (near initialization for ‘ShiftCaps[42]’)
+src/arch/x86/monitor.c:333:15: error: initializer element is not constant
+src/arch/x86/monitor.c:333:15: note: (near initialization for ‘ShiftCaps[42]’)
+src/arch/x86/monitor.c:336:15: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '>', '?', KEY_RSHIFT, KEY_PRINTSCRN,               /* 0x34 - 0x37 */
+               ^~~~~~~~~~
+src/arch/x86/monitor.c:336:15: note: (near initialization for ‘ShiftCaps[54]’)
+src/arch/x86/monitor.c:336:15: error: initializer element is not constant
+src/arch/x86/monitor.c:336:15: note: (near initialization for ‘ShiftCaps[54]’)
+src/arch/x86/monitor.c:336:27: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     '>', '?', KEY_RSHIFT, KEY_PRINTSCRN,               /* 0x34 - 0x37 */
+                           ^~~~~~~~~~~~~
+src/arch/x86/monitor.c:336:27: note: (near initialization for ‘ShiftCaps[55]’)
+src/arch/x86/monitor.c:336:27: error: initializer element is not constant
+src/arch/x86/monitor.c:336:27: note: (near initialization for ‘ShiftCaps[55]’)
+src/arch/x86/monitor.c:337:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_LALT, ' ', KEY_CAPSLOCK, KEY_F1,               /* 0x38 - 0x3B */
+     ^~~~~~~~
+src/arch/x86/monitor.c:337:5: note: (near initialization for ‘ShiftCaps[56]’)
+src/arch/x86/monitor.c:337:5: error: initializer element is not constant
+src/arch/x86/monitor.c:337:5: note: (near initialization for ‘ShiftCaps[56]’)
+src/arch/x86/monitor.c:337:20: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_LALT, ' ', KEY_CAPSLOCK, KEY_F1,               /* 0x38 - 0x3B */
+                    ^~~~~~~~~~~~
+src/arch/x86/monitor.c:337:20: note: (near initialization for ‘ShiftCaps[58]’)
+src/arch/x86/monitor.c:337:20: error: initializer element is not constant
+src/arch/x86/monitor.c:337:20: note: (near initialization for ‘ShiftCaps[58]’)
+src/arch/x86/monitor.c:337:34: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_LALT, ' ', KEY_CAPSLOCK, KEY_F1,               /* 0x38 - 0x3B */
+                                  ^~~~~~
+src/arch/x86/monitor.c:337:34: note: (near initialization for ‘ShiftCaps[59]’)
+src/arch/x86/monitor.c:337:34: error: initializer element is not constant
+src/arch/x86/monitor.c:337:34: note: (near initialization for ‘ShiftCaps[59]’)
+src/arch/x86/monitor.c:338:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+     ^~~~~~
+src/arch/x86/monitor.c:338:5: note: (near initialization for ‘ShiftCaps[60]’)
+src/arch/x86/monitor.c:338:5: error: initializer element is not constant
+src/arch/x86/monitor.c:338:5: note: (near initialization for ‘ShiftCaps[60]’)
+src/arch/x86/monitor.c:338:13: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+             ^~~~~~
+src/arch/x86/monitor.c:338:13: note: (near initialization for ‘ShiftCaps[61]’)
+src/arch/x86/monitor.c:338:13: error: initializer element is not constant
+src/arch/x86/monitor.c:338:13: note: (near initialization for ‘ShiftCaps[61]’)
+src/arch/x86/monitor.c:338:21: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+                     ^~~~~~
+src/arch/x86/monitor.c:338:21: note: (near initialization for ‘ShiftCaps[62]’)
+src/arch/x86/monitor.c:338:21: error: initializer element is not constant
+src/arch/x86/monitor.c:338:21: note: (near initialization for ‘ShiftCaps[62]’)
+src/arch/x86/monitor.c:338:29: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F2, KEY_F3, KEY_F4, KEY_F5,                    /* 0x3C - 0x3F */
+                             ^~~~~~
+src/arch/x86/monitor.c:338:29: note: (near initialization for ‘ShiftCaps[63]’)
+src/arch/x86/monitor.c:338:29: error: initializer element is not constant
+src/arch/x86/monitor.c:338:29: note: (near initialization for ‘ShiftCaps[63]’)
+src/arch/x86/monitor.c:339:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+     ^~~~~~
+src/arch/x86/monitor.c:339:5: note: (near initialization for ‘ShiftCaps[64]’)
+src/arch/x86/monitor.c:339:5: error: initializer element is not constant
+src/arch/x86/monitor.c:339:5: note: (near initialization for ‘ShiftCaps[64]’)
+src/arch/x86/monitor.c:339:13: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+             ^~~~~~
+src/arch/x86/monitor.c:339:13: note: (near initialization for ‘ShiftCaps[65]’)
+src/arch/x86/monitor.c:339:13: error: initializer element is not constant
+src/arch/x86/monitor.c:339:13: note: (near initialization for ‘ShiftCaps[65]’)
+src/arch/x86/monitor.c:339:21: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+                     ^~~~~~
+src/arch/x86/monitor.c:339:21: note: (near initialization for ‘ShiftCaps[66]’)
+src/arch/x86/monitor.c:339:21: error: initializer element is not constant
+src/arch/x86/monitor.c:339:21: note: (near initialization for ‘ShiftCaps[66]’)
+src/arch/x86/monitor.c:339:29: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F6, KEY_F7, KEY_F8, KEY_F9,                    /* 0x40 - 0x43 */
+                             ^~~~~~
+src/arch/x86/monitor.c:339:29: note: (near initialization for ‘ShiftCaps[67]’)
+src/arch/x86/monitor.c:339:29: error: initializer element is not constant
+src/arch/x86/monitor.c:339:29: note: (near initialization for ‘ShiftCaps[67]’)
+src/arch/x86/monitor.c:340:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+     ^~~~~~~
+src/arch/x86/monitor.c:340:5: note: (near initialization for ‘ShiftCaps[68]’)
+src/arch/x86/monitor.c:340:5: error: initializer element is not constant
+src/arch/x86/monitor.c:340:5: note: (near initialization for ‘ShiftCaps[68]’)
+src/arch/x86/monitor.c:340:14: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+              ^~~~~~~~~~~
+src/arch/x86/monitor.c:340:14: note: (near initialization for ‘ShiftCaps[69]’)
+src/arch/x86/monitor.c:340:14: error: initializer element is not constant
+src/arch/x86/monitor.c:340:14: note: (near initialization for ‘ShiftCaps[69]’)
+src/arch/x86/monitor.c:340:27: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+                           ^~~~~~~~~~~
+src/arch/x86/monitor.c:340:27: note: (near initialization for ‘ShiftCaps[70]’)
+src/arch/x86/monitor.c:340:27: error: initializer element is not constant
+src/arch/x86/monitor.c:340:27: note: (near initialization for ‘ShiftCaps[70]’)
+src/arch/x86/monitor.c:340:40: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_F10, KEY_NUMLOCK, KEY_SCRLOCK, KEY_KPHOME,     /* 0x44 - 0x47 */
+                                        ^~~~~~~~~~
+src/arch/x86/monitor.c:340:40: note: (near initialization for ‘ShiftCaps[71]’)
+src/arch/x86/monitor.c:340:40: error: initializer element is not constant
+src/arch/x86/monitor.c:340:40: note: (near initialization for ‘ShiftCaps[71]’)
+src/arch/x86/monitor.c:341:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+     ^~~~~~~~
+src/arch/x86/monitor.c:341:5: note: (near initialization for ‘ShiftCaps[72]’)
+src/arch/x86/monitor.c:341:5: error: initializer element is not constant
+src/arch/x86/monitor.c:341:5: note: (near initialization for ‘ShiftCaps[72]’)
+src/arch/x86/monitor.c:341:15: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+               ^~~~~~~~~~
+src/arch/x86/monitor.c:341:15: note: (near initialization for ‘ShiftCaps[73]’)
+src/arch/x86/monitor.c:341:15: error: initializer element is not constant
+src/arch/x86/monitor.c:341:15: note: (near initialization for ‘ShiftCaps[73]’)
+src/arch/x86/monitor.c:341:27: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+                           ^~~~~~~~~~~
+src/arch/x86/monitor.c:341:27: note: (near initialization for ‘ShiftCaps[74]’)
+src/arch/x86/monitor.c:341:27: error: initializer element is not constant
+src/arch/x86/monitor.c:341:27: note: (near initialization for ‘ShiftCaps[74]’)
+src/arch/x86/monitor.c:341:40: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPUP, KEY_KPPGUP, KEY_KPMINUS, KEY_KPLEFT,     /* 0x48 - 0x4B */
+                                        ^~~~~~~~~~
+src/arch/x86/monitor.c:341:40: note: (near initialization for ‘ShiftCaps[75]’)
+src/arch/x86/monitor.c:341:40: error: initializer element is not constant
+src/arch/x86/monitor.c:341:40: note: (near initialization for ‘ShiftCaps[75]’)
+src/arch/x86/monitor.c:342:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+     ^~~~~~~~~~~~
+src/arch/x86/monitor.c:342:5: note: (near initialization for ‘ShiftCaps[76]’)
+src/arch/x86/monitor.c:342:5: error: initializer element is not constant
+src/arch/x86/monitor.c:342:5: note: (near initialization for ‘ShiftCaps[76]’)
+src/arch/x86/monitor.c:342:19: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+                   ^~~~~~~~~~~
+src/arch/x86/monitor.c:342:19: note: (near initialization for ‘ShiftCaps[77]’)
+src/arch/x86/monitor.c:342:19: error: initializer element is not constant
+src/arch/x86/monitor.c:342:19: note: (near initialization for ‘ShiftCaps[77]’)
+src/arch/x86/monitor.c:342:32: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+                                ^~~~~~~~~~
+src/arch/x86/monitor.c:342:32: note: (near initialization for ‘ShiftCaps[78]’)
+src/arch/x86/monitor.c:342:32: error: initializer element is not constant
+src/arch/x86/monitor.c:342:32: note: (near initialization for ‘ShiftCaps[78]’)
+src/arch/x86/monitor.c:342:44: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPCENTER, KEY_KPRIGHT, KEY_KPPLUS, KEY_KPEND,  /* 0x4C - 0x4F */
+                                            ^~~~~~~~~
+src/arch/x86/monitor.c:342:44: note: (near initialization for ‘ShiftCaps[79]’)
+src/arch/x86/monitor.c:342:44: error: initializer element is not constant
+src/arch/x86/monitor.c:342:44: note: (near initialization for ‘ShiftCaps[79]’)
+src/arch/x86/monitor.c:343:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+     ^~~~~~~~~~
+src/arch/x86/monitor.c:343:5: note: (near initialization for ‘ShiftCaps[80]’)
+src/arch/x86/monitor.c:343:5: error: initializer element is not constant
+src/arch/x86/monitor.c:343:5: note: (near initialization for ‘ShiftCaps[80]’)
+src/arch/x86/monitor.c:343:17: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+                 ^~~~~~~~~~
+src/arch/x86/monitor.c:343:17: note: (near initialization for ‘ShiftCaps[81]’)
+src/arch/x86/monitor.c:343:17: error: initializer element is not constant
+src/arch/x86/monitor.c:343:17: note: (near initialization for ‘ShiftCaps[81]’)
+src/arch/x86/monitor.c:343:29: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+                             ^~~~~~~~~~~~
+src/arch/x86/monitor.c:343:29: note: (near initialization for ‘ShiftCaps[82]’)
+src/arch/x86/monitor.c:343:29: error: initializer element is not constant
+src/arch/x86/monitor.c:343:29: note: (near initialization for ‘ShiftCaps[82]’)
+src/arch/x86/monitor.c:343:43: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_KPDOWN, KEY_KPPGDN, KEY_KPINSERT, KEY_KPDEL,   /* 0x50 - 0x53 */
+                                           ^~~~~~~~~
+src/arch/x86/monitor.c:343:43: note: (near initialization for ‘ShiftCaps[83]’)
+src/arch/x86/monitor.c:343:43: error: initializer element is not constant
+src/arch/x86/monitor.c:343:43: note: (near initialization for ‘ShiftCaps[83]’)
+src/arch/x86/monitor.c:344:5: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_SYSREQ, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, /* 0x54 - 0x57 */
+     ^~~~~~~~~~
+src/arch/x86/monitor.c:344:5: note: (near initialization for ‘ShiftCaps[84]’)
+src/arch/x86/monitor.c:344:5: error: initializer element is not constant
+src/arch/x86/monitor.c:344:5: note: (near initialization for ‘ShiftCaps[84]’)
+src/arch/x86/monitor.c:344:17: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_SYSREQ, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, /* 0x54 - 0x57 */
+                 ^~~~~~~~~~~
+src/arch/x86/monitor.c:344:17: note: (near initialization for ‘ShiftCaps[85]’)
+src/arch/x86/monitor.c:344:17: error: initializer element is not constant
+src/arch/x86/monitor.c:344:17: note: (near initialization for ‘ShiftCaps[85]’)
+src/arch/x86/monitor.c:344:30: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_SYSREQ, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, /* 0x54 - 0x57 */
+                              ^~~~~~~~~~~
+src/arch/x86/monitor.c:344:30: note: (near initialization for ‘ShiftCaps[86]’)
+src/arch/x86/monitor.c:344:30: error: initializer element is not constant
+src/arch/x86/monitor.c:344:30: note: (near initialization for ‘ShiftCaps[86]’)
+src/arch/x86/monitor.c:344:43: warning: initialization of ‘int’ from ‘const int *’ makes integer from pointer without a cast [-Wint-conversion]
+     KEY_SYSREQ, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, /* 0x54 - 0x57 */
+                                           ^~~~~~~~~~~
+src/arch/x86/monitor.c:344:43: note: (near initialization for ‘ShiftCaps[87]’)
+src/arch/x86/monitor.c:344:43: error: initializer element is not constant
+src/arch/x86/monitor.c:344:43: note: (near initialization for ‘ShiftCaps[87]’)
+src/arch/x86/monitor.c:353:8: error: unknown type name ‘nk_keycode_t’
+ static nk_keycode_t kbd_translate_monitor(nk_scancode_t scan)
+        ^~~~~~~~~~~~
+src/arch/x86/monitor.c:353:43: error: unknown type name ‘nk_scancode_t’
+ static nk_keycode_t kbd_translate_monitor(nk_scancode_t scan)
+                                           ^~~~~~~~~~~~~
+src/arch/x86/monitor.c:459:12: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘ps2_status_t’
+ } __packed ps2_status_t;
+            ^~~~~~~~~~~~
+src/arch/x86/monitor.c:474:12: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘ps2_cmd_t’
+ } __packed ps2_cmd_t;
+            ^~~~~~~~~
+src/arch/x86/monitor.c: In function ‘ps2_wait_for_key’:
+src/arch/x86/monitor.c:478:12: error: unknown type name ‘ps2_status_t’
+   volatile ps2_status_t status;
+            ^~~~~~~~~~~~
+src/arch/x86/monitor.c:479:3: error: unknown type name ‘nk_scancode_t’
+   nk_scancode_t scan;
+   ^~~~~~~~~~~~~
+src/arch/x86/monitor.c:483:11: error: request for member ‘val’ in something not a structure or union
+     status.val = inb(KBD_STATUS_REG);
+           ^
+src/arch/x86/monitor.c:483:18: warning: implicit declaration of function ‘inb’ [-Wimplicit-function-declaration]
+     status.val = inb(KBD_STATUS_REG);
+                  ^~~
+src/arch/x86/monitor.c:483:5: warning: statement with no effect [-Wunused-value]
+     status.val = inb(KBD_STATUS_REG);
+     ^~~~~~
+src/arch/x86/monitor.c:485:19: error: request for member ‘obf’ in something not a structure or union
+   } while (!status.obf); // wait for something to be in the output buffer for us to read
+                   ^
+src/arch/x86/monitor.c: In function ‘wait_for_command’:
+src/arch/x86/monitor.c:508:28: warning: implicit declaration of function ‘kbd_translate_monitor’ [-Wimplicit-function-declaration]
+     uint16_t key_encoded = kbd_translate_monitor(key);
+                            ^~~~~~~~~~~~~~~~~~~~~
+src/arch/x86/monitor.c:518:24: error: ‘NO_KEY’ undeclared (first use in this function)
+     if (key_encoded != NO_KEY)
+                        ^~~~~~
+src/arch/x86/monitor.c:518:24: note: each undeclared identifier is reported only once for each function it appears in
+src/arch/x86/monitor.c:518:21: warning: comparison between pointer and integer
+     if (key_encoded != NO_KEY)
+                     ^~
+src/arch/x86/monitor.c: In function ‘is_hex_addr’:
+src/arch/x86/monitor.c:543:17: warning: implicit declaration of function ‘strlen’ [-Wimplicit-function-declaration]
+   int str_len = strlen(addr_as_str);
+                 ^~~~~~
+src/arch/x86/monitor.c:543:17: note: ‘strlen’ is defined in header ‘<string.h>’; did you forget to ‘#include <string.h>’?
+src/arch/x86/monitor.c:1:1:
++#include <string.h>
+ /*
+src/arch/x86/monitor.c:543:17:
+   int str_len = strlen(addr_as_str);
+                 ^~~~~~
+src/arch/x86/monitor.c: In function ‘get_hex_addr’:
+src/arch/x86/monitor.c:573:3: error: declaration of non-variable ‘strlen’ in ‘for’ loop initial declaration
+   for(int i = (strlen(addr_as_str) - 1); i > 1; i--) {
+   ^~~
+src/arch/x86/monitor.c:585:7: warning: implicit declaration of function ‘ASSERT’ [-Wimplicit-function-declaration]
+       ASSERT(false);
+       ^~~~~~
+src/arch/x86/monitor.c:585:14: error: ‘false’ undeclared (first use in this function)
+       ASSERT(false);
+              ^~~~~
+src/arch/x86/monitor.c: In function ‘get_dec_addr’:
+src/arch/x86/monitor.c:621:3: error: declaration of non-variable ‘strlen’ in ‘for’ loop initial declaration
+   for(int i = (strlen(addr_as_str) - 1); i >= 0; i--) {
+   ^~~
+src/arch/x86/monitor.c:627:14: error: ‘false’ undeclared (first use in this function)
+       ASSERT(false);
+              ^~~~~
+src/arch/x86/monitor.c: In function ‘get_dr_num’:
+src/arch/x86/monitor.c:659:3: error: declaration of non-variable ‘strlen’ in ‘for’ loop initial declaration
+   for(int i = (strlen(num_as_str) - 1); i >= 0; i--) {
+   ^~~
+src/arch/x86/monitor.c:665:14: error: ‘false’ undeclared (first use in this function)
+       ASSERT(false);
+              ^~~~~
+src/arch/x86/monitor.c: In function ‘__strtok_r_monitor’:
+src/arch/x86/monitor.c:685:11: error: ‘NULL’ undeclared (first use in this function)
+  if (s == NULL && (s = *last) == NULL)
+           ^~~~
+src/arch/x86/monitor.c:685:11: note: ‘NULL’ is defined in header ‘<stddef.h>’; did you forget to ‘#include <stddef.h>’?
+src/arch/x86/monitor.c:1:1:
++#include <stddef.h>
+ /*
+src/arch/x86/monitor.c:685:11:
+  if (s == NULL && (s = *last) == NULL)
+           ^~~~
+src/arch/x86/monitor.c:685:8: warning: comparison of distinct pointer types lacks a cast
+  if (s == NULL && (s = *last) == NULL)
+        ^~
+src/arch/x86/monitor.c:685:31: warning: comparison of distinct pointer types lacks a cast
+  if (s == NULL && (s = *last) == NULL)
+                               ^~
+src/arch/x86/monitor.c:686:10: warning: returning ‘const int *’ from a function with incompatible return type ‘char *’ [-Wincompatible-pointer-types]
+   return (NULL);
+          ^
+src/arch/x86/monitor.c:699:9: warning: assignment to ‘char *’ from incompatible pointer type ‘const int *’ [-Wincompatible-pointer-types]
+   *last = NULL;
+         ^
+src/arch/x86/monitor.c:700:10: warning: returning ‘const int *’ from a function with incompatible return type ‘char *’ [-Wincompatible-pointer-types]
+   return (NULL);
+          ^
+src/arch/x86/monitor.c:714:8: warning: assignment to ‘char *’ from incompatible pointer type ‘const int *’ [-Wincompatible-pointer-types]
+      s = NULL;
+        ^
+src/arch/x86/monitor.c: In function ‘execute_potential_command’:
+src/arch/x86/monitor.c:773:7: warning: implicit declaration of function ‘strcmp’ [-Wimplicit-function-declaration]
+   if (strcmp(word, "quit") == 0)
+       ^~~~~~
+src/arch/x86/monitor.c:773:7: note: ‘strcmp’ is defined in header ‘<string.h>’; did you forget to ‘#include <string.h>’?
+src/arch/x86/monitor.c:783:12: warning: implicit declaration of function ‘execute_drinfo’; did you mean ‘execute_quit’? [-Wimplicit-function-declaration]
+     quit = execute_drinfo(command);
+            ^~~~~~~~~~~~~~
+            execute_quit
+src/arch/x86/monitor.c: In function ‘my_monitor_entry’:
+src/arch/x86/monitor.c:870:5: warning: implicit declaration of function ‘dump_call’ [-Wimplicit-function-declaration]
+     dump_call();
+     ^~~~~~~~~
+make[3]: *** [scripts/Makefile.build:197: src/arch/x86/monitor.o] Error 1
+make[2]: *** [scripts/Makefile.build:322: src/arch/x86] Error 2
+make[1]: *** [scripts/Makefile.build:322: src/arch] Error 2
+make: *** [Makefile:823: src] Error 2
