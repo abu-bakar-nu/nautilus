@@ -856,10 +856,15 @@ static int execute_help(char command[])
   vga_puts("commands:");
   vga_puts("  quit");
   vga_puts("  help");
-  vga_puts("  watch [number] [addr]");
-  vga_puts("  break [number] [addr]");
-  vga_puts("  disable [number]");
-  vga_puts("  drinfo");
+  vga_puts("  pagingenable");
+  return 0;
+}
+
+void paging_on();
+
+static int execute_paging_enable(char command[])
+{
+  paging_on();
   return 0;
 }
 
@@ -884,6 +889,10 @@ static int execute_potential_command(char command[])
   {
     quit = execute_help(command);
   }
+  else if (my_strcmp(word, "pagingenable") == 0)
+  {
+    quit = execute_paging_enable(command);
+  }
   else /* default: */
   {
     vga_puts("command not recognized");
@@ -892,7 +901,6 @@ static int execute_potential_command(char command[])
   return quit;
 
 }
-
 
 static int nk_monitor_loop()
 {
