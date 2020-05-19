@@ -857,6 +857,7 @@ static int execute_help(char command[])
   vga_puts("  quit");
   vga_puts("  help");
   vga_puts("  pagingenable");
+  vga_puts("  test");
   return 0;
 }
 
@@ -865,10 +866,20 @@ void paging_on();
 static int execute_paging_enable(char command[])
 {
   paging_on();
+  print("paging is on now\n\r");
   return 0;
 }
 
-
+void test_paging();
+static int execute_test(char command[])
+{
+  print("executing test\n\r");
+  // uint32_t zero=0;
+  // __asm__ __volatile__("mov %0, %%cr3" ::"a"(zero) : );
+  test_paging();
+  print("test executed successfully\n\r");
+  return 0;
+}
 
 
 
@@ -892,6 +903,10 @@ static int execute_potential_command(char command[])
   else if (my_strcmp(word, "pagingenable") == 0)
   {
     quit = execute_paging_enable(command);
+  }
+  else if (my_strcmp(word, "test") == 0)
+  {
+    quit = execute_test(command);
   }
   else /* default: */
   {
@@ -985,5 +1000,3 @@ int my_monitor_entry()
     
     return 0;
 }
-
-
