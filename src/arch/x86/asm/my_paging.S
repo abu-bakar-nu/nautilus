@@ -1,19 +1,19 @@
 .global paging_on
 paging_on:
 
-    movl $1024, %ecx
-    movl $pd, %edx
-    movl $0x83, %eax                    // entry is present, rw, pagesize = 4MB
-    andl $0xffffffffffdfffff, %eax      // set bit 21 to zero
+    mov $1024, %ecx
+    mov $pd, %edx
+    mov $0x83, %eax                    // entry is present, rw, pagesize = 4MB
+    and $0xffdfffff, %eax               // set bit 21 to zero
 
 .write_pde:
-    movl %eax, (%edx)
-    addl $0x400000, %eax
-    addl $0x4, %edx
+    mov %eax, (%edx)
+    add $0x400000, %eax
+    add $0x4, %edx
     loop .write_pde
 
     /* put pd address in cr3 */
-    movl $pd, %eax
+    mov $pd, %eax
     mov %eax, %cr3
 
     /* put pse bit in cr4 */

@@ -2,12 +2,9 @@
 test_paging:
 
 mov %cr3, %eax
-// andl $0xfffffffffffffffe, %eax
-andl $0, %eax
-mov %eax, %cr3
-
-// mov 10, %edx
-// mov (%edx), %eax
+// add $4, %eax
+andl $0xfffffffffffffffe, 4(%eax)
+mov (0x799999), %eax
 
 ret
 
