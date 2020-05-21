@@ -32,6 +32,15 @@
 
 #define TARGET_PORT 0xe9
 
+static inline uint64_t __attribute__((always_inline))
+rdtsc (void)
+{
+    uint32_t lo, hi;
+    asm volatile("CPUID"::: "eax","ebx","ecx","edx", "memory");
+    asm volatile("rdtsc" : "=a"(lo), "=d"(hi));
+    return lo | ((uint64_t)(hi) << 32);
+}
+
 static void outb (unsigned char val, unsigned short port)
 {
     asm volatile ("outb %0, %1"::"a" (val), "dN" (port));
@@ -856,32 +865,57 @@ static int execute_help(char command[])
   vga_puts("commands:");
   vga_puts("  quit");
   vga_puts("  help");
-  vga_puts("  pagingenable");
-  vga_puts("  test");
+  vga_puts("  pagingon");
+  vga_puts("  pf");
+  vga_puts("  testlocality");
   return 0;
 }
 
 void paging_on();
-
-static int execute_paging_enable(char command[])
+static int execute_paging(char command[])
 {
   paging_on();
   print("paging is on now\n\r");
   return 0;
 }
 
+static char * long_to_string(long x)
+{
+  static char buf[20] = {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 0};
+  for(int i=18; x>0; i--)
+  {
+    buf[i] = (char) ((x%10) + 48);
+    x = x/10;
+  }
+  return buf;
+}
+
 void test_paging();
-static int execute_test(char command[])
+static int execute_pf(char command[])
 {
   print("executing test\n\r");
   // uint32_t zero=0;
   // __asm__ __volatile__("mov %0, %%cr3" ::"a"(zero) : );
-  test_paging();
+  // test_paging();
+  __asm__ __volatile__("mov %cr3, %eax");
+  __asm__ __volatile__("andl $0xfffffffffffffffe, 0(%eax)");
+  __asm__ __volatile__("mov (0x3999), %eax");
   print("test executed successfully\n\r");
   return 0;
 }
 
-
+static int test_locality(char command[])
+{
+  for (int j=0; j<100; j++)
+  {
+    unsigned long t1 = rdtsc();
+    __asm__ __volatile__("nop");
+    unsigned long t2 = rdtsc();
+    print("cycles: ");
+    print(long_to_string(t2-t1));
+    print("\n\r");
+  }
+}
 
 static int execute_potential_command(char command[])
 {
@@ -900,13 +934,13 @@ static int execute_potential_command(char command[])
   {
     quit = execute_help(command);
   }
-  else if (my_strcmp(word, "pagingenable") == 0)
+  else if (my_strcmp(word, "pagingon") == 0)
   {
-    quit = execute_paging_enable(command);
+    quit = execute_paging(command);
   }
-  else if (my_strcmp(word, "test") == 0)
+  else if (my_strcmp(word, "pf") == 0)
   {
-    quit = execute_test(command);
+    quit = execute_pf(command);
   }
   else /* default: */
   {
