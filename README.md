@@ -19,7 +19,7 @@ or address space isolation if this is required for its execution model.
 
 ## Table of Contents
 
-- [Background](#background)
+- [Background](#Background)
 - [Prerequisites](#prerequisites)
 - [Hardware Support](#hardware-support)
 - [Building](#building)
