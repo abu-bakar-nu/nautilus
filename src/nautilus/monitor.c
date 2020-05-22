@@ -732,7 +732,6 @@ static int execute_help(char command[])
   vga_puts("  break [number] [addr]");
   vga_puts("  disable [number]");
   vga_puts("  drinfo");
-  vga_puts(" pwrstats");
   return 0;
 }
 
