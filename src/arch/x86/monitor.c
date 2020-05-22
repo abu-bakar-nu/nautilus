@@ -32,6 +32,9 @@
 
 #define TARGET_PORT 0xe9
 
+#define ITERATIONS 100
+#define NUM_READINGS 100.0
+
 static inline uint64_t __attribute__((always_inline))
 rdtsc (void)
 {
@@ -39,6 +42,21 @@ rdtsc (void)
     asm volatile("CPUID"::: "eax","ebx","ecx","edx", "memory");
     asm volatile("rdtsc" : "=a"(lo), "=d"(hi));
     return lo | ((uint64_t)(hi) << 32);
+}
+
+static char * long_to_string(long x)
+{
+  static char buf[20];
+  for(int i=0; i<19; i++){
+    buf[i] = '0';
+  }
+  for(int i=18; x>0; i--)
+  {
+    buf[i] = (char) ((x%10) + 48);
+    x = x/10;
+  }
+  buf[19] = 0;
+  return buf;
 }
 
 static void outb (unsigned char val, unsigned short port)
@@ -865,9 +883,9 @@ static int execute_help(char command[])
   vga_puts("commands:");
   vga_puts("  quit");
   vga_puts("  help");
-  vga_puts("  pagingon");
+  vga_puts("  paging_on");
   vga_puts("  pf");
-  vga_puts("  testlocality");
+  vga_puts("  test");
   return 0;
 }
 
@@ -879,42 +897,183 @@ static int execute_paging(char command[])
   return 0;
 }
 
-static char * long_to_string(long x)
-{
-  static char buf[20] = {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 0};
-  for(int i=18; x>0; i--)
-  {
-    buf[i] = (char) ((x%10) + 48);
-    x = x/10;
-  }
-  return buf;
-}
-
-void test_paging();
 static int execute_pf(char command[])
 {
   print("executing test\n\r");
-  // uint32_t zero=0;
-  // __asm__ __volatile__("mov %0, %%cr3" ::"a"(zero) : );
-  // test_paging();
   __asm__ __volatile__("mov %cr3, %eax");
   __asm__ __volatile__("andl $0xfffffffffffffffe, 0(%eax)");
-  __asm__ __volatile__("mov (0x3999), %eax");
+  __asm__ __volatile__("mov (0x3fffff), %eax");
   print("test executed successfully\n\r");
   return 0;
 }
 
-static int test_locality(char command[])
+static long low_locality()   // 128 accesses, all from different pages
 {
-  for (int j=0; j<100; j++)
+  // flush TLB
+  __asm__ __volatile__("movl	%cr3,%eax");
+	__asm__ __volatile__("movl	%eax,%cr3");
+
+  unsigned int *x = (unsigned int *)0xC0000000U;
+  unsigned long sum = 0;
+  for (int i=0; i<ITERATIONS; i++)
+  {
+    for (unsigned int j=0; j<0x8000000; j+=0x100000)
+    {
+      sum += x[j];
+    }
+  }
+  return sum;
+}
+static long medium_locality()   // 128 accesses, 8 from same page
+{
+  // flush TLB
+  __asm__ __volatile__("movl	%cr3,%eax");
+	__asm__ __volatile__("movl	%eax,%cr3");
+  
+  unsigned int *x = (unsigned int *)0xC0000000U;
+  unsigned long sum = 0;
+  for (int i=0; i<ITERATIONS; i++)
+  {
+    for (unsigned int j=0; j<0x1000000; j+=0x20000)
+    {
+      sum += x[j];
+    }
+  }
+  return sum;
+}
+static long high_locality()   // 128 accesses, all from same page
+{
+  // flush TLB
+  __asm__ __volatile__("movl	%cr3,%eax");
+	__asm__ __volatile__("movl	%eax,%cr3");
+
+  unsigned int *x = (unsigned int *)0xC0000000U;
+  unsigned long sum = 0;
+  for (int i=0; i<ITERATIONS; i++)
+  {
+    for (unsigned int j=0; j<128; j+=1)
+    {
+      sum += x[j];
+    }
+  }
+  return sum;
+}
+
+static int execute_test(char command[])
+{
+  double avg_cycles = 0;
+  unsigned long avg_sum = 0;
+
+  print("========================== PAGING OFF ==========================\n\r");
+  for (int i=0; i<NUM_READINGS; i++)
   {
     unsigned long t1 = rdtsc();
-    __asm__ __volatile__("nop");
+    unsigned long temp = high_locality();
     unsigned long t2 = rdtsc();
-    print("cycles: ");
-    print(long_to_string(t2-t1));
+    avg_cycles += (t2-t1);
+    avg_sum += temp;
+  }
+  if(avg_sum){
+    print(long_to_string(avg_sum));
     print("\n\r");
   }
+  print("avg cycles with high locality: ");
+  print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  print("\n\r");
+
+  avg_cycles = 0;
+  avg_sum = 0;
+  for (int i=0; i<NUM_READINGS; i++)
+  {
+    unsigned long t1 = rdtsc();
+    unsigned long temp = medium_locality();
+    unsigned long t2 = rdtsc();
+    avg_cycles += (t2-t1);
+    avg_sum += temp;
+  }
+  if(avg_sum){
+    print(long_to_string(avg_sum));
+    print("\n\r");
+  }
+  print("avg cycles with medium locality: ");
+  print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  print("\n\r");
+
+  avg_cycles = 0;
+  avg_sum = 0;
+  for (int i=0; i<NUM_READINGS; i++)
+  {
+    unsigned long t1 = rdtsc();
+    unsigned long temp = low_locality();
+    unsigned long t2 = rdtsc();
+    avg_cycles += (t2-t1);
+    avg_sum += temp;
+  }
+  if(avg_sum){
+    print(long_to_string(avg_sum));
+    print("\n\r");
+  }
+  print("avg cycles with low locality: ");
+  print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  print("\n\n\n\r");
+
+  print("========================== PAGING ON ==========================\n\r");
+  paging_on();
+  
+  avg_cycles = 0;
+  avg_sum = 0;
+  for (int i=0; i<NUM_READINGS; i++)
+  {
+    unsigned long t1 = rdtsc();
+    unsigned long temp = high_locality();
+    unsigned long t2 = rdtsc();
+    avg_cycles += (t2-t1);
+    avg_sum += temp;
+  }
+  if(avg_sum){
+    print(long_to_string(avg_sum));
+    print("\n\r");
+  }
+  print("avg cycles with high locality: ");
+  print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  print("\n\r");
+
+  avg_cycles = 0;
+  avg_sum = 0;
+  for (int i=0; i<NUM_READINGS; i++)
+  {
+    unsigned long t1 = rdtsc();
+    unsigned long temp = medium_locality();
+    unsigned long t2 = rdtsc();
+    avg_cycles += (t2-t1);
+    avg_sum += temp;
+  }
+  if(avg_sum){
+    print(long_to_string(avg_sum));
+    print("\n\r");
+  }
+  print("avg cycles with medium locality: ");
+  print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  print("\n\r");
+
+  avg_cycles = 0;
+  avg_sum = 0;
+  for (int i=0; i<NUM_READINGS; i++)
+  {
+    unsigned long t1 = rdtsc();
+    unsigned long temp = low_locality();
+    unsigned long t2 = rdtsc();
+    avg_cycles += (t2-t1);
+    avg_sum += temp;
+  }
+  if(avg_sum){
+    print(long_to_string(avg_sum));
+    print("\n\r");
+  }
+  print("avg cycles with low locality: ");
+  print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  print("\n\r");
+  return 0;
 }
 
 static int execute_potential_command(char command[])
@@ -934,13 +1093,17 @@ static int execute_potential_command(char command[])
   {
     quit = execute_help(command);
   }
-  else if (my_strcmp(word, "pagingon") == 0)
+  else if (my_strcmp(word, "paging_on") == 0)
   {
     quit = execute_paging(command);
   }
   else if (my_strcmp(word, "pf") == 0)
   {
     quit = execute_pf(command);
+  }
+  else if (my_strcmp(word, "test") == 0)
+  {
+    quit = execute_test(command);
   }
   else /* default: */
   {
