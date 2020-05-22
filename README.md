@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Nautilus
-Nautilus is an example of an Aerokernel, a very thin kernel-layer exposed 
+Nautilus is an example of an Aerokernel, which is a very thin kernel-layer exposed 
 (much like Unikernel) directly to a runtime system and/or application. 
 Aerokernels are suited particularly well for *parallel* runtimes that need fine-grained,
 explicit control of the machine to squeeze every bit of performance out of it. Note that
