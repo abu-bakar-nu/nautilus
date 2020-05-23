@@ -886,6 +886,7 @@ static int execute_help(char command[])
   vga_puts("  paging_on");
   vga_puts("  pf");
   vga_puts("  test");
+  vga_puts("  pwrstats");
   return 0;
 }
 
@@ -905,6 +906,28 @@ static int execute_pf(char command[])
   		       "mov (0x3fffff), %eax");
   print("test executed successfully\n\r");
   return 0;
+}
+
+static int execute_rapl(char command[])
+{
+
+}
+
+inline void 
+msr_write (uint32_t msr, uint64_t data)
+{
+    uint32_t lo = data;
+    uint32_t hi = data >> 32;
+    asm volatile("wrmsr" : : "c"(msr), "a"(lo), "d"(hi));
+}
+
+
+inline uint64_t 
+msr_read (uint32_t msr) 
+{
+    uint32_t lo, hi;
+    asm volatile("rdmsr" : "=a"(lo), "=d"(hi) : "c"(msr));
+    return ((uint64_t)hi << 32) | lo;
 }
 
 static long low_locality()   // 128 accesses, all from different pages
@@ -1106,6 +1129,10 @@ static int execute_potential_command(char command[])
   else if (my_strcmp(word, "test") == 0)
   {
     quit = execute_test(command);
+  }
+  else if (my_strcmp(word, "pwrstats") == 0)
+  {
+    quit = execute_rapl(command);
   }
   else /* default: */
   {
