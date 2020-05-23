@@ -900,9 +900,9 @@ static int execute_paging(char command[])
 static int execute_pf(char command[])
 {
   print("executing test\n\r");
-  __asm__ __volatile__("mov %cr3, %eax");
-  __asm__ __volatile__("andl $0xfffffffffffffffe, 0(%eax)");
-  __asm__ __volatile__("mov (0x3fffff), %eax");
+  __asm__ __volatile__("movl %cr3,%eax\n"
+ 		       "andl $0xfffffffffffffffe, 0(%eax)\n"
+  		       "mov (0x3fffff), %eax");
   print("test executed successfully\n\r");
   return 0;
 }
@@ -910,8 +910,9 @@ static int execute_pf(char command[])
 static long low_locality()   // 128 accesses, all from different pages
 {
   // flush TLB
-  __asm__ __volatile__("movl	%cr3,%eax");
-	__asm__ __volatile__("movl	%eax,%cr3");
+	__asm__ __volatile__("movl %cr3,%eax\n"
+                             "movl %eax,%cr3");
+
 
   unsigned int *x = (unsigned int *)0xC0000000U;
   unsigned long sum = 0;
@@ -927,8 +928,8 @@ static long low_locality()   // 128 accesses, all from different pages
 static long medium_locality()   // 128 accesses, 8 from same page
 {
   // flush TLB
-  __asm__ __volatile__("movl	%cr3,%eax");
-	__asm__ __volatile__("movl	%eax,%cr3");
+	__asm__ __volatile__("movl %cr3,%eax\n"
+			     "movl %eax,%cr3");
   
   unsigned int *x = (unsigned int *)0xC0000000U;
   unsigned long sum = 0;
@@ -944,8 +945,9 @@ static long medium_locality()   // 128 accesses, 8 from same page
 static long high_locality()   // 128 accesses, all from same page
 {
   // flush TLB
-  __asm__ __volatile__("movl	%cr3,%eax");
-	__asm__ __volatile__("movl	%eax,%cr3");
+
+	__asm__ __volatile__("movl %cr3,%eax\n"
+                             "movl %eax,%cr3");
 
   unsigned int *x = (unsigned int *)0xC0000000U;
   unsigned long sum = 0;
