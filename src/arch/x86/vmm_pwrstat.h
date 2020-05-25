@@ -22,6 +22,12 @@
 
 #include "vmm_types.h"
 
+#define uint8_t unsigned char
+#define uint16_t unsigned short
+#define uint32_t unsigned int 
+#define uint64_t unsigned long long
+#define NULL ((void*)0)
+
 typedef enum {
 	V3_PWRSTAT_PKG_ENERGY,
 	V3_PWRSTAT_CORE_ENERGY,

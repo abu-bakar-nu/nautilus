@@ -21,6 +21,28 @@
 #include "iface-pwrstat.h"
 #include "accommon.h"
 #include "vmm_types.h"
+#include "vmm_pwrstat.h"
+
+#define uint8_t unsigned char
+#define uint16_t unsigned short
+#define uint32_t unsigned int 
+#define uint64_t unsigned long long
+#define NULL ((void*)0)
+
+#define register_extension(ext)					\
+    static struct linux_ext * _lnx_ext				\
+    __attribute__((used))					\
+	__attribute__((unused, __section__("_lnx_exts"),		\
+		       aligned(sizeof(void *))))		\
+	= ext;
+
+struct linux_ext {
+    char * name;
+    int (*init)( void );
+    int (*deinit)( void );
+    int (*guest_init)(struct v3_guest * guest, void ** priv_data);
+    int (*guest_deinit)(struct v3_guest * guest, void * priv_data);
+};
 
 
 enum rapl_domain_id {
@@ -153,23 +175,23 @@ static int rapl_read_energy(struct rapl_domain * domain)
 }
 
 
-// static int rapl_ctr_valid (v3_pwrstat_ctr_t ctr) 
-// {
-// 	switch (ctr) {
-// 		case V3_PWRSTAT_PKG_ENERGY:
-// 			return rapl_domains[RAPL_DOMAIN_PKG].valid;
-// 		case V3_PWRSTAT_CORE_ENERGY:
-// 			return rapl_domains[RAPL_DOMAIN_PP0].valid;
-// 		case V3_PWRSTAT_EXT_ENERGY:
-// 			return rapl_domains[RAPL_DOMAIN_PP1].valid;
-// 		case V3_PWRSTAT_DRAM_ENERGY:
-// 			return rapl_domains[RAPL_DOMAIN_DRAM].valid;
-// 		default:
-// 			return 0;
-// 	}
+static int rapl_ctr_valid (v3_pwrstat_ctr_t ctr) 
+{
+	switch (ctr) {
+		case V3_PWRSTAT_PKG_ENERGY:
+			return rapl_domains[RAPL_DOMAIN_PKG].valid;
+		case V3_PWRSTAT_CORE_ENERGY:
+			return rapl_domains[RAPL_DOMAIN_PP0].valid;
+		case V3_PWRSTAT_EXT_ENERGY:
+			return rapl_domains[RAPL_DOMAIN_PP1].valid;
+		case V3_PWRSTAT_DRAM_ENERGY:
+			return rapl_domains[RAPL_DOMAIN_DRAM].valid;
+		default:
+			return 0;
+	}
 	
-// 	return 0;
-// }
+	return 0;
+}
 
 // needed
 static uint64_t rapl_get_value (v3_pwrstat_ctr_t ctr)
