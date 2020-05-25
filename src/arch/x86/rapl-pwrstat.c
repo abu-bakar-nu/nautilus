@@ -1,32 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@Leevisir 
-PeterDinda
-/
-palacios
-0
-2
-1
- Code
- Issues 1
- Pull requests 0 Actions
- Projects 0
- Wiki
- Security 0
- Insights
-palacios/linux_module/iface-pwrstat.c
-@PeterDinda PeterDinda Linux kernel compatability enhancements (through 3.19)
-c8b23e9 on Dec 21, 2015
-@PeterDinda@khale
-322 lines (260 sloc)  5.97 KB
-
-
 /*
  *
  * Intel RAPL (Sandy Bridge and above) Accessor
