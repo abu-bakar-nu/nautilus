@@ -6,19 +6,21 @@
  *
  */
 #include <asm/msr.h>
-#include <asm/msr-index.h>
-#include <linux/math64.h>
+// #include <asm/msr-index.h>
+// #include <linux/math64.h>
 
-#include <palacios/vmm_types.h>
-#include <palacios/vmm_util.h>
+// #include <palacios/vmm_types.h>
+// #include <palacios/vmm_util.h>
 
-#include <interfaces/vmm_pwrstat.h>
+// #include <interfaces/vmm_pwrstat.h>
 
-#include "vm.h"
-#include "palacios.h"
-#include "util-queue.h"
-#include "linux-exts.h"
+// #include "vm.h"
+// #include "palacios.h"
+// #include "util-queue.h"
+// #include "linux-exts.h"
 #include "iface-pwrstat.h"
+#include "accommon.h"
+#include "vmm_types.h"
 
 
 enum rapl_domain_id {
@@ -42,7 +44,7 @@ struct rapl_domain {
 	int valid;
 };
 
-
+// needed
 static struct rapl_domain rapl_domains[] = {
 	[RAPL_DOMAIN_PKG] = {
 		.domain_id = RAPL_DOMAIN_PKG,
@@ -92,7 +94,7 @@ static inline void cpuid_string(u32 id, u32 dest[4]) {
 		   :"a"(id));
 }
 
-
+// needed
 static int rapl_check_unit (void)
 {
 	u64 output;
@@ -116,29 +118,29 @@ static int rapl_check_unit (void)
 }
 
 
-static u64 rapl_unit_xlate(enum unit_type type, u64 value, int action)
-{
-	u64 divisor;
+// static u64 rapl_unit_xlate(enum unit_type type, u64 value, int action)
+// {
+// 	u64 divisor;
 
-	switch (type) {
-	case POWER_UNIT:
-		divisor = power_unit_divisor;
-		break;
-	case ENERGY_UNIT:
-		divisor = energy_unit_divisor;
-		break;
-	case TIME_UNIT:
-		divisor = time_unit_divisor;
-		break;
-	default:
-		return 0;
-	};
+// 	switch (type) {
+// 	case POWER_UNIT:
+// 		divisor = power_unit_divisor;
+// 		break;
+// 	case ENERGY_UNIT:
+// 		divisor = energy_unit_divisor;
+// 		break;
+// 	case TIME_UNIT:
+// 		divisor = time_unit_divisor;
+// 		break;
+// 	default:
+// 		return 0;
+// 	};
 
-	if (action)
-		return value * divisor; /* value is from users */
-	else
-		return div64_u64(value, divisor); /* value is from MSR */
-}
+// 	if (action)
+// 		return value * divisor; /* value is from users */
+// 	else
+// 		return div64_u64(value, divisor); /* value is from MSR */
+// }
 
 
 static int rapl_read_energy(struct rapl_domain * domain)
@@ -151,25 +153,25 @@ static int rapl_read_energy(struct rapl_domain * domain)
 }
 
 
-static int rapl_ctr_valid (v3_pwrstat_ctr_t ctr) 
-{
-	switch (ctr) {
-		case V3_PWRSTAT_PKG_ENERGY:
-			return rapl_domains[RAPL_DOMAIN_PKG].valid;
-		case V3_PWRSTAT_CORE_ENERGY:
-			return rapl_domains[RAPL_DOMAIN_PP0].valid;
-		case V3_PWRSTAT_EXT_ENERGY:
-			return rapl_domains[RAPL_DOMAIN_PP1].valid;
-		case V3_PWRSTAT_DRAM_ENERGY:
-			return rapl_domains[RAPL_DOMAIN_DRAM].valid;
-		default:
-			return 0;
-	}
+// static int rapl_ctr_valid (v3_pwrstat_ctr_t ctr) 
+// {
+// 	switch (ctr) {
+// 		case V3_PWRSTAT_PKG_ENERGY:
+// 			return rapl_domains[RAPL_DOMAIN_PKG].valid;
+// 		case V3_PWRSTAT_CORE_ENERGY:
+// 			return rapl_domains[RAPL_DOMAIN_PP0].valid;
+// 		case V3_PWRSTAT_EXT_ENERGY:
+// 			return rapl_domains[RAPL_DOMAIN_PP1].valid;
+// 		case V3_PWRSTAT_DRAM_ENERGY:
+// 			return rapl_domains[RAPL_DOMAIN_DRAM].valid;
+// 		default:
+// 			return 0;
+// 	}
 	
-	return 0;
-}
+// 	return 0;
+// }
 
-
+// needed
 static uint64_t rapl_get_value (v3_pwrstat_ctr_t ctr)
 {
 	switch (ctr) {
@@ -205,7 +207,7 @@ static int get_cpu_vendor (char name[13])
 	return maxid;
 }
 
-
+// needed
 static int get_cpu_model (void) 
 {
 	u32 dest[4] = {0, 0, 0, 0};
@@ -244,7 +246,7 @@ static int is_intel(void)
 	return !strcmp(name,"GenuineIntel");
 }
 
-
+// needed
 static int rapl_init (void) 
 {
 	if (supports_rapl()) {
