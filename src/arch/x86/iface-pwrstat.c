@@ -5,7 +5,7 @@
  *
  *
  */
-#include <asm/msr.h>
+// #include <asm/msr.h>
 // #include <asm/msr-index.h>
 // #include <linux/math64.h>
 
@@ -19,14 +19,18 @@
 // #include "util-queue.h"
 // #include "linux-exts.h"
 #include "iface-pwrstat.h"
-#include "accommon.h"
-#include "vmm_types.h"
-#include "vmm_pwrstat.h"
+// #include "accommon.h"
+// #include "vmm_types.h"
+// #include "vmm_pwrstat.h"
 
 #define uint8_t unsigned char
 #define uint16_t unsigned short
 #define uint32_t unsigned int 
 #define uint64_t unsigned long long
+#define u8  uint8_t
+#define u16 uint16_t
+#define u32 uint32_t
+#define u64 uint64_t
 #define NULL ((void*)0)
 
 #define register_extension(ext)					\
@@ -35,6 +39,21 @@
 	__attribute__((unused, __section__("_lnx_exts"),		\
 		       aligned(sizeof(void *))))		\
 	= ext;
+
+typedef enum {
+	V3_PWRSTAT_PKG_ENERGY,
+	V3_PWRSTAT_CORE_ENERGY,
+	V3_PWRSTAT_EXT_ENERGY, /* "Power plane 1", e.g. graphics peripheral */
+	V3_PWRSTAT_DRAM_ENERGY,
+} v3_pwrstat_ctr_t;
+
+/* note that (on Intel at least) RAPL doesn't adhere to PMU semantics */
+struct v3_pwrstat_iface {
+	int (*init)(void);
+	int (*deinit)(void);
+	int (*ctr_valid)(v3_pwrstat_ctr_t ctr);
+	uint64_t (*get_value)(v3_pwrstat_ctr_t ctr);
+};
 
 struct linux_ext {
     char * name;
@@ -307,6 +326,13 @@ static struct v3_pwrstat_iface intel_rapl_pwrstat = {
 	.ctr_valid = rapl_ctr_valid,
 	.get_value = rapl_get_value,
 };
+
+struct v3_pwrstat_iface * palacios_pwrstat = 0;
+
+void V3_Init_Pwrstat (struct v3_pwrstat_iface * pwrstat_iface) 
+{
+    palacios_pwrstat = pwrstat_iface;
+}
 
 
 static int pwrstat_init (void)
