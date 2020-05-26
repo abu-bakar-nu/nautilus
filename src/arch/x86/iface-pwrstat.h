@@ -50,5 +50,8 @@
 #define TIME_UNIT_OFFSET	0x10
 #define TIME_UNIT_MASK		0xF0000
 
+static int pwrstat_init (void);
 
 #endif
+
+

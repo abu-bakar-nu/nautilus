@@ -40,6 +40,36 @@
 		       aligned(sizeof(void *))))		\
 	= ext;
 
+extern struct tracepoint __tracepoint_read_msr;
+static inline void do_trace_read_msr(unsigned int msr, u64 val, int failed) {}
+static inline unsigned long long notrace __rdmsr(unsigned int msr);
+{
+	DECLARE_ARGS(val, low, high);
+
+	asm volatile("1: rdmsr\n"
+		     "2:\n"
+		     _ASM_EXTABLE_HANDLE(1b, 2b, ex_handler_rdmsr_unsafe)
+		     : EAX_EDX_RET(val, low, high) : "c" (msr));
+
+	return EAX_EDX_VAL(val, low, high);
+}
+
+static inline unsigned long long native_read_msr(unsigned int msr)
+{
+	unsigned long long val;
+
+	val = __rdmsr(msr);
+
+	if (msr_tracepoint_active(__tracepoint_read_msr))
+		do_trace_read_msr(msr, val, 0);
+
+	return val;
+}
+
+#define rdmsrl(msr, val)			\
+	((val) = native_read_msr((msr)))
+
+
 typedef enum {
 	V3_PWRSTAT_PKG_ENERGY,
 	V3_PWRSTAT_CORE_ENERGY,

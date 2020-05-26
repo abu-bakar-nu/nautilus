@@ -22,6 +22,9 @@
  * redistribute, and modify it as specified in the file "LICENSE.txt".
  */
 
+#include "iface-pwrstat.h"
+#include "iface-pwrstat.c"
+
 
 #define uint8_t unsigned char
 #define uint16_t unsigned short
@@ -910,7 +913,7 @@ static int execute_pf(char command[])
 
 static int execute_rapl(char command[])
 {
-
+  pwrstat_init();
 }
 
 static inline void
