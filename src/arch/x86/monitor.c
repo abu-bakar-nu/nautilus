@@ -44,6 +44,14 @@ rdtsc (void)
     return lo | ((uint64_t)(hi) << 32);
 }
 
+
+#define DB(x) vga_putchar(x); outb(x, TARGET_PORT)
+#define DHN(x) vga_putchar(((x & 0xF) >= 10) ? (((x & 0xF) - 10) + 'a') : ((x & 0xF) + '0')); outb(((x & 0xF) >= 10) ? (((x & 0xF) - 10) + 'a') : ((x & 0xF) + '0'), TARGET_PORT)
+#define DHB(x) DHN(x >> 4) ; DHN(x);
+#define DHW(x) DHB(x >> 8) ; DHB(x);
+#define DHL(x) DHW(x >> 16) ; DHW(x);
+#define DHQ(x) DHL(x >> 32) ; DHL(x);
+
 static char * long_to_string(long x)
 {
   static char buf[20];
@@ -282,12 +290,6 @@ static inline void vga_copy_in(void *src, uint32_t n)
 
 // Private output formatting routines since we
 // do not want to reply on printf being functional
-#define DB(x) vga_putchar(x)
-#define DHN(x) vga_putchar(((x & 0xF) >= 10) ? (((x & 0xF) - 10) + 'a') : ((x & 0xF) + '0'))
-#define DHB(x) DHN(x >> 4) ; DHN(x);
-#define DHW(x) DHB(x >> 8) ; DHB(x);
-#define DHL(x) DHW(x >> 16) ; DHW(x);
-#define DHQ(x) DHL(x >> 32) ; DHL(x);
 #define DS(x) { char *__curr = x; while(*__curr) { DB(*__curr); __curr++; } }
 
 static char screen_saved[VGA_HEIGHT*VGA_WIDTH*2];
@@ -908,10 +910,6 @@ static int execute_pf(char command[])
   return 0;
 }
 
-static int execute_rapl(char command[])
-{
-
-}
 
 inline void 
 msr_write (uint32_t msr, uint64_t data)
@@ -928,6 +926,16 @@ msr_read (uint32_t msr)
     uint32_t lo, hi;
     asm volatile("rdmsr" : "=a"(lo), "=d"(hi) : "c"(msr));
     return ((uint64_t)hi << 32) | lo;
+}
+
+
+static int execute_rapl(char command[])
+{
+        print("Testing msr_read:");
+        uint64_t v = (msr_read(0x611));
+	DHQ(v);
+	print("\n");
+
 }
 
 static long low_locality()   // 128 accesses, all from different pages
