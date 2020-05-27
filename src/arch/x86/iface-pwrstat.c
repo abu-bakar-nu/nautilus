@@ -23,51 +23,10 @@
 // #include "vmm_types.h"
 // #include "vmm_pwrstat.h"
 
-#define uint8_t unsigned char
-#define uint16_t unsigned short
-#define uint32_t unsigned int 
-#define uint64_t unsigned long long
-#define u8  uint8_t
-#define u16 uint16_t
-#define u32 uint32_t
-#define u64 uint64_t
-#define NULL ((void*)0)
 
-#define register_extension(ext)					\
-    static struct linux_ext * _lnx_ext				\
-    __attribute__((used))					\
-	__attribute__((unused, __section__("_lnx_exts"),		\
-		       aligned(sizeof(void *))))		\
-	= ext;
 
-extern struct tracepoint __tracepoint_read_msr;
-static inline void do_trace_read_msr(unsigned int msr, u64 val, int failed) {}
-static inline unsigned long long notrace __rdmsr(unsigned int msr);
-{
-	DECLARE_ARGS(val, low, high);
 
-	asm volatile("1: rdmsr\n"
-		     "2:\n"
-		     _ASM_EXTABLE_HANDLE(1b, 2b, ex_handler_rdmsr_unsafe)
-		     : EAX_EDX_RET(val, low, high) : "c" (msr));
 
-	return EAX_EDX_VAL(val, low, high);
-}
-
-static inline unsigned long long native_read_msr(unsigned int msr)
-{
-	unsigned long long val;
-
-	val = __rdmsr(msr);
-
-	if (msr_tracepoint_active(__tracepoint_read_msr))
-		do_trace_read_msr(msr, val, 0);
-
-	return val;
-}
-
-#define rdmsrl(msr, val)			\
-	((val) = native_read_msr((msr)))
 
 
 typedef enum {
@@ -307,6 +266,19 @@ static int supports_rapl (void)
 	}
 
 	return 0;
+}
+
+int strcmp(const char * s1, const char * s2) {
+    while (1) {
+	int cmp = (*s1 - *s2);
+	
+	if ((cmp != 0) || (*s1 == '\0') || (*s2 == '\0')) {
+	    return cmp;
+	}
+	
+	++s1;
+	++s2;
+    }
 }
 
 
