@@ -933,7 +933,7 @@ static int execute_rapl(char command[])
 {
         print("Testing msr_read:");
         uint64_t v = (msr_read(0x611));
-	DHQ(v);
+	      DHQ(v);
 	print("\n");
 
 }
@@ -994,8 +994,11 @@ static int execute_test(char command[])
 {
   double avg_cycles = 0;
   unsigned long avg_sum = 0;
+  unsigned long init_pwr = 0;
+  unsigned long latest_pwr = 0;
 
   print("========================== PAGING OFF ==========================\n\r");
+  vga_print("========================== PAGING OFF ==========================\n");
   for (int i=0; i<NUM_READINGS; i++)
   {
     unsigned long t1 = rdtsc();
@@ -1009,8 +1012,11 @@ static int execute_test(char command[])
     print("\n\r");
   }
   print("avg cycles with high locality: ");
+  vga_print("avg cycles with high locality: ");
   print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  vga_print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
   print("\n\r");
+  vga_print("\n");
 
   avg_cycles = 0;
   avg_sum = 0;
@@ -1027,8 +1033,11 @@ static int execute_test(char command[])
     print("\n\r");
   }
   print("avg cycles with medium locality: ");
+  vga_print("avg cycles with medium locality: ");
   print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  vga_print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
   print("\n\r");
+  vga_print("\n");
 
   avg_cycles = 0;
   avg_sum = 0;
@@ -1045,10 +1054,85 @@ static int execute_test(char command[])
     print("\n\r");
   }
   print("avg cycles with low locality: ");
+  vga_print("avg cycles with low locality: ");
   print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  vga_print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
   print("\n\n\n\r");
+  vga_print("\n");
+
+  avg_cycles = 0;
+  avg_sum = 0;
+  for (int i = 0; i < NUM_READINGS; i++)
+  {
+    unsigned long t1 = msr_read(0x611);
+    unsigned long temp = high_locality();
+    unsigned long t2 = msr_read(0x611);
+    avg_cycles += (t2-t1);
+    avg_sum += temp;
+  }
+  if(avg_sum){
+    print(long_to_string(avg_sum));
+    print("\n\r");
+  }
+  print("avg power consumption with high locality: ");
+  vga_print("avg power consumption with high locality:: ");
+  print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  vga_print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  // unsigned long offPwr = (unsigned long)(avg_cycles/NUM_READINGS);
+  print("\n\r");
+  vga_print("\n");
+
+  avg_cycles = 0;
+  avg_sum = 0;
+  for (int i = 0; i < NUM_READINGS; i++)
+  {
+    unsigned long t1 = msr_read(0x611);
+    unsigned long temp = medium_locality();
+    unsigned long t2 = msr_read(0x611);
+    avg_cycles += (t2-t1);
+    avg_sum += temp;
+  }
+  if(avg_sum){
+    print(long_to_string(avg_sum));
+    print("\n\r");
+  }
+  print("avg power consumption with medium locality: ");
+  vga_print("avg power consumption with medium locality:: ");
+  print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  vga_print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  // unsigned long offPwr = (unsigned long)(avg_cycles/NUM_READINGS);
+  print("\n\r");
+  vga_print("\n");
+
+  avg_cycles = 0;
+  avg_sum = 0;
+  for (int i = 0; i < NUM_READINGS; i++)
+  {
+    unsigned long t1 = msr_read(0x611);
+    unsigned long temp = low_locality();
+    unsigned long t2 = msr_read(0x611);
+    avg_cycles += (t2-t1);
+    avg_sum += temp;
+  }
+  if(avg_sum){
+    print(long_to_string(avg_sum));
+    print("\n\r");
+  }
+  print("avg power consumption with low locality: ");
+  vga_print("avg power consumption with low locality:: ");
+  print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  vga_print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  // unsigned long offPwr = (unsigned long)(avg_cycles/NUM_READINGS);
+  print("\n\r");
+  vga_print("\n");
+
+
+  
+
+  
 
   print("========================== PAGING ON ==========================\n\r");
+  vga_print("========================== PAGING ON ==========================\n");
   paging_on();
   
   avg_cycles = 0;
@@ -1066,8 +1150,11 @@ static int execute_test(char command[])
     print("\n\r");
   }
   print("avg cycles with high locality: ");
+  vga_print("avg cycles with high locality: ");
   print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  vga_print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
   print("\n\r");
+  vga_print("\n");
 
   avg_cycles = 0;
   avg_sum = 0;
@@ -1084,8 +1171,11 @@ static int execute_test(char command[])
     print("\n\r");
   }
   print("avg cycles with medium locality: ");
+  vga_print("avg cycles with medium locality: ");
   print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  vga_print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
   print("\n\r");
+  vga_print("\n");
 
   avg_cycles = 0;
   avg_sum = 0;
@@ -1102,8 +1192,80 @@ static int execute_test(char command[])
     print("\n\r");
   }
   print("avg cycles with low locality: ");
+  vga_print("avg cycles with low locality: ");
   print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  vga_print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
   print("\n\r");
+  vga_print("\n");
+
+  avg_cycles = 0;
+  avg_sum = 0;
+  for (int i = 0; i < NUM_READINGS; i++)
+  {
+    unsigned long t1 = msr_read(0x611);
+    unsigned long temp = high_locality();
+    unsigned long t2 = msr_read(0x611);
+    avg_cycles += (t2-t1);
+    avg_sum += temp;
+  }
+  if(avg_sum){
+    print(long_to_string(avg_sum));
+    print("\n\r");
+  }
+  print("avg power consumption with high locality: ");
+  vga_print("avg power consumption with high locality: ");
+  print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  vga_print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  // unsigned long onPwr = (unsigned long)(avg_cycles/NUM_READINGS);
+  print("\n\r");
+  vga_print("\n");
+
+
+  avg_cycles = 0;
+  avg_sum = 0;
+  for (int i = 0; i < NUM_READINGS; i++)
+  {
+    unsigned long t1 = msr_read(0x611);
+    unsigned long temp = medium_locality();
+    unsigned long t2 = msr_read(0x611);
+    avg_cycles += (t2-t1);
+    avg_sum += temp;
+  }
+  if(avg_sum){
+    print(long_to_string(avg_sum));
+    print("\n\r");
+  }
+  print("avg power consumption with medium locality: ");
+  vga_print("avg power consumption with medium locality: ");
+  print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  vga_print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  // unsigned long onPwr = (unsigned long)(avg_cycles/NUM_READINGS);
+  print("\n\r");
+  vga_print("\n");
+
+
+
+  avg_cycles = 0;
+  avg_sum = 0;
+  for (int i = 0; i < NUM_READINGS; i++)
+  {
+    unsigned long t1 = msr_read(0x611);
+    unsigned long temp = low_locality();
+    unsigned long t2 = msr_read(0x611);
+    avg_cycles += (t2-t1);
+    avg_sum += temp;
+  }
+  if(avg_sum){
+    print(long_to_string(avg_sum));
+    print("\n\r");
+  }
+  print("avg power consumption with low locality: ");
+  vga_print("avg power consumption with low locality: ");
+  print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  vga_print(long_to_string((unsigned long)(avg_cycles/NUM_READINGS)));
+  // unsigned long onPwr = (unsigned long)(avg_cycles/NUM_READINGS);
+  print("\n\r");
+  vga_print("\n");
   return 0;
 }
 
