@@ -67,6 +67,13 @@ static char * long_to_string(long x)
   return buf;
 }
 
+static inline void 
+tlb_flush(void)
+{
+	_asm_ __volatile__( "movl %%cr3,%%eax;\
+	movl  %%eax,%%cr3;" ::: "%eax");
+}
+
 static void outb (unsigned char val, unsigned short port)
 {
     asm volatile ("outb %0, %1"::"a" (val), "dN" (port));
@@ -903,13 +910,12 @@ static int execute_paging(char command[])
 static int execute_pf(char command[])
 {
   print("executing test\n\r");
-  __asm__ __volatile__("mov %cr3, %eax");
-  __asm__ __volatile__("andl $0xfffffffffffffffe, 0(%eax)");
-  __asm__ __volatile__("mov (0x3fffff), %eax");
+  _asm_ __volatile__("mov %cr3, %eax\
+                       andl $0xfffffffffffffffe, 0(%eax);\
+                       mov (0x3fffff), %eax" ::: "%eax", "memory");
   print("test executed successfully\n\r");
   return 0;
 }
-
 
 inline void 
 msr_write (uint32_t msr, uint64_t data)
@@ -941,8 +947,8 @@ static int execute_rapl(char command[])
 static long low_locality()   // 128 accesses, all from different pages
 {
   // flush TLB
-  __asm__ __volatile__("movl	%cr3,%eax");
-	__asm__ __volatile__("movl	%eax,%cr3");
+  tlb_flush();
+
 
   unsigned int *x = (unsigned int *)0xC0000000U;
   unsigned long sum = 0;
@@ -958,9 +964,9 @@ static long low_locality()   // 128 accesses, all from different pages
 static long medium_locality()   // 128 accesses, 8 from same page
 {
   // flush TLB
-  __asm__ __volatile__("movl	%cr3,%eax");
-	__asm__ __volatile__("movl	%eax,%cr3");
-  
+  tlb_flush(); 
+
+ 
   unsigned int *x = (unsigned int *)0xC0000000U;
   unsigned long sum = 0;
   for (int i=0; i<ITERATIONS; i++)
@@ -975,8 +981,8 @@ static long medium_locality()   // 128 accesses, 8 from same page
 static long high_locality()   // 128 accesses, all from same page
 {
   // flush TLB
-  __asm__ __volatile__("movl	%cr3,%eax");
-	__asm__ __volatile__("movl	%eax,%cr3");
+  tlb_flush();
+
 
   unsigned int *x = (unsigned int *)0xC0000000U;
   unsigned long sum = 0;
