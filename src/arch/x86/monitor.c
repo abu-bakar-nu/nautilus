@@ -70,7 +70,7 @@ static char * long_to_string(long x)
 static inline void 
 tlb_flush(void)
 {
-	_asm_ __volatile__( "movl %%cr3,%%eax;\
+	__asm__ __volatile__( "movl %%cr3,%%eax;\
 	movl  %%eax,%%cr3;" ::: "%eax");
 }
 
@@ -910,9 +910,9 @@ static int execute_paging(char command[])
 static int execute_pf(char command[])
 {
   print("executing test\n\r");
-  _asm_ __volatile__("mov %cr3, %eax\
-                       andl $0xfffffffffffffffe, 0(%eax);\
-                       mov (0x3fffff), %eax" ::: "%eax", "memory");
+  __asm__ __volatile__("movl %cr3,%eax;\n"
+  		       "andl $0xfffffffffffffffe, 0(%eax);\n"
+   		       "mov (0x3fffff), %eax;");
   print("test executed successfully\n\r");
   return 0;
 }
