@@ -977,7 +977,7 @@ static long medium_locality()   // 128 accesses, all from different page
   unsigned long sum = 0;
   for (int i=0; i<ITERATIONS; i++)
   {
-    for (unsigned int j=0; j<0x1000000; j+=0x20000)
+    for (unsigned int j=0; j<0x1000000; j+=0x10000)
     {
       sum += x[j];
     }
