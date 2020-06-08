@@ -950,29 +950,26 @@ static int execute_rapl(char command[])
   return 0;
 }
 
-static long low_locality()   // 768 accesses, all from different pages, and also larger gap between each page.
+static long low_locality()   // 256 accesses, all from different pages
 {
   // flush TLB
   tlb_flush();
-
-
   unsigned int *x = (unsigned int *)0xC0000000U;
   unsigned long sum = 0;
   for (int i=0; i<ITERATIONS; i++)
   {
-    for (unsigned int j=0; j<0x30000000; j+=0x100000)
+    for (unsigned int j=0; j<0x10000000; j+=0x100000)
     {
       sum += x[j];
     }
   }
   return sum;
 }
-static long medium_locality()   // 128 accesses, all from different page
+static long medium_locality()   // 128 accesses, 8 from same page
 {
   // flush TLB
-  tlb_flush(); 
+  tlb_flush();
 
- 
   unsigned int *x = (unsigned int *)0xC0000000U;
   unsigned long sum = 0;
   for (int i=0; i<ITERATIONS; i++)
@@ -988,8 +985,6 @@ static long high_locality()   // 128 accesses, all from same page
 {
   // flush TLB
   tlb_flush();
-
-
   unsigned int *x = (unsigned int *)0xC0000000U;
   unsigned long sum = 0;
   for (int i=0; i<ITERATIONS; i++)
