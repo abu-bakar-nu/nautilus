@@ -914,10 +914,10 @@ static int execute_pf(char command[])
   // 		       "andl $0xfffffffffffffffe, 0(%eax);\n"
   //  		       "mov (0x3fffff), %eax;");
 
-  __asm__ __volatile__("movl %cr3, %eax;\
-                       andl $0xfffffffffffffffe, 0(%eax);\
-                       invlpg 0(%eax);\
-                       mov (0x3fffff), %eax;" ::: "%eax", "memory");
+  __asm__ __volatile__("movl %%cr3, %%eax;\
+                       andl $0xfffffffffffffffe, 0(%%eax);\
+                       invlpg 0(%%eax);\
+                       mov (0x3fffff), %%eax;" ::: "%eax", "memory");
 
   print("test executed successfully\n\r");
   return 0;
@@ -943,11 +943,11 @@ msr_read (uint32_t msr)
 
 static int execute_rapl(char command[])
 {
-        print("Testing msr_read:");
-        uint64_t v = (msr_read(0x611));
-	      DHQ(v);
+  print("Testing msr_read:");
+  uint64_t v = (msr_read(0x611));
+	DHQ(v);
 	print("\n");
-
+  return 0;
 }
 
 static long low_locality()   // 128 accesses, all from different pages
