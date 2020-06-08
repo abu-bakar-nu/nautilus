@@ -960,7 +960,7 @@ static long low_locality()   // 768 accesses, all from different pages, and also
   unsigned long sum = 0;
   for (int i=0; i<ITERATIONS; i++)
   {
-    for (unsigned int j=0; j<0x30000000; j+=0x200000)
+    for (unsigned int j=0; j<0x30000000; j+=0x100000)
     {
       sum += x[j];
     }
@@ -977,7 +977,7 @@ static long medium_locality()   // 128 accesses, all from different page
   unsigned long sum = 0;
   for (int i=0; i<ITERATIONS; i++)
   {
-    for (unsigned int j=0; j<0x1000000; j+=0x10000)
+    for (unsigned int j=0; j<0x1000000; j+=0x20000)
     {
       sum += x[j];
     }
